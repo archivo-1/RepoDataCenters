@@ -9,7 +9,7 @@
     "thumbnail": "",
     "uiConfig": {
       "cameraModes": ["orbit", "fly", "ortho"],
-      "visualStyles": ["rendered", "clay",],
+      "visualStyles": ["rendered", "clay"],
       "showLayers": false,
       "showLighting": false,
       "showShadows": false
@@ -48,6 +48,7 @@
     }
   }
 ]
+
 
 
 
