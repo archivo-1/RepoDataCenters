@@ -18,7 +18,7 @@
   {
     "id": "cable1",
     "name": "Cable Humboldt",
-    "file": "cables3d.3dm",
+    "file": "1.2 Data Center EDCSCL01_V1.3dm",
     "description": "Cable Humaboldt comparado a escala humana",
     "category": "building",
     "size": "~10 MB",
@@ -34,7 +34,7 @@
   {
     "id": "plano1",
     "name": "Mapa de cables submarinos",
-    "file": "mapamundi1.3dm",
+    "file": "1.24_Centro de almacenamiento de datos Puente AltoV1.3dm",
     "description": "...",
     "category": "building",
     "size": "~10 MB",
@@ -48,5 +48,6 @@
     }
   }
 ]
+
 
 
