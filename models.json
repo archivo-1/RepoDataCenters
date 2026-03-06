@@ -1,18 +1,18 @@
 [
   {
-    "id": "torpederas-valparaisoCLS",
-    "name": "Playa Las Torpederas, Valparaíso",
-    "file": "torpederas-valparaisoCLS.3dm",
+    "id": "1.1",
+    "name": "Claro Data Center Colina",
+    "file": "1.1 Claro - Chile Data Center Colina_V1.3dm",
     "description": "Recorrido del cable Curie desde la playa Las Torpederas hasta el Valparaíso Cable Landing Station",
-    "category": "site",
+    "category": "Data Centers",
     "size": "~16 MB",
     "thumbnail": "",
     "uiConfig": {
-      "cameraModes": ["orbit", "walk", "fly", "ortho"],
-      "visualStyles": ["rendered", "clay", "wireframe", "xray"],
-      "showLayers": true,
-      "showLighting": true,
-      "showShadows": true
+      "cameraModes": ["orbit", "fly", "ortho"],
+      "visualStyles": ["rendered", "clay",],
+      "showLayers": false,
+      "showLighting": false,
+      "showShadows": false
     }
   },
   {
@@ -48,3 +48,4 @@
     }
   }
 ]
+
