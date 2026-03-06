@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArchVista</title>
+    <title>Repositorio Data Centers</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -96,12 +96,12 @@
 
 <header>
     <a href="index.html" class="logo">
-        <h1>ArchVista</h1>
-        <span>3D Model Library</span>
+        <h1>Repositorio de Data Centers</h1>
+        <span>Galería de modelos 3d</span>
     </a>
     <div class="search-wrap">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="search" placeholder="Search models..." autocomplete="off">
+        <input type="text" id="search" placeholder="Buscar..." autocomplete="off">
     </div>
 </header>
 
@@ -113,12 +113,12 @@
 
 <main>
     <div class="grid-header">
-        <span class="grid-label" id="grid-label">Loading models...</span>
+        <span class="grid-label" id="grid-label">Cargando modelos...</span>
     </div>
     <div class="grid" id="grid"></div>
 </main>
 
-<footer>ArchVista — Archivo-1</footer>
+<footer>RepoDataCenters — Archivo-1</footer>
 
 <script>
     let MODELS = [];
@@ -129,7 +129,7 @@
     // Load models from JSON
     fetch('models.json')
         .then(response => {
-            if (!response.ok) throw new Error('Failed to load models');
+            if (!response.ok) throw new Error('Error al cargar');
             return response.json();
         })
         .then(data => {
@@ -138,9 +138,9 @@
             renderGrid();
         })
         .catch(error => {
-            console.error('Error loading models:', error);
-            document.getElementById('grid-label').textContent = 'Error loading models';
-            document.getElementById('grid').innerHTML = '<p style="color: #f87171; text-align: center; padding: 2rem;">Could not load models.json. Make sure the file exists in your root folder.</p>';
+            console.error('Error cargando modelos:', error);
+            document.getElementById('grid-label').textContent = 'Error cargando modelos';
+            document.getElementById('grid').innerHTML = '<p style="color: #f87171; text-align: center; padding: 2rem;">No se pudo cargar models.json. Revisar que el archivo esté en carpeta.</p>';
         });
 
     function updateCounts() {
