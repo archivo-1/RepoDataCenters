@@ -8,8 +8,8 @@
     "tamano": "~16 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["orbit", "walk"],
-      "visualStyles": ["rendered", "wireframe"],
+      "cameraModes": ["orbit","ortho","fly"],
+      "visualStyles": ["rendered", "clay","xray"],
       "showLayers": false,
       "showLighting": true,
       "showShadows": true
@@ -25,7 +25,7 @@
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": ["orbit", "ortho"],
-      "visualStyles": ["rendered", "wireframe"],
+      "visualStyles": ["rendered", "clay","wireframe"],
       "showLayers": false,
       "showLighting": true,
       "showShadows": true
@@ -40,7 +40,7 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
+      "cameraModes": [],
       "visualStyles": ["rendered"],
       "showLayers": true,
       "showLighting": false,
@@ -56,10 +56,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -72,10 +72,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -88,10 +88,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -104,10 +104,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -120,10 +120,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -136,10 +136,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -152,10 +152,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -168,10 +168,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -184,10 +184,10 @@
     "tamano": "~10 MB",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
-      "cameraModes": ["ortho"],
-      "visualStyles": ["rendered"],
-      "showLayers": true,
-      "showLighting": false,
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
       "showShadows": false
     }
   },
@@ -197,7 +197,7 @@
     "archivo": "pdf/Coordinadora La Farfana.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "107 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -206,7 +206,7 @@
     "archivo": "pdf/Ministra de Ciencias.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "106 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -215,7 +215,7 @@
     "archivo": "pdf/Mosacat.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "142 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -224,7 +224,7 @@
     "archivo": "pdf/No + Amazon.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "109 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -233,7 +233,7 @@
     "archivo": "pdf/ONG Investiga Colina.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "107 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -242,7 +242,7 @@
     "archivo": "pdf/Pudahuel Despierta.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "106 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -251,16 +251,16 @@
     "archivo": "pdf/Resistencia Socioambiental Quilicura.pdf",
     "descripcion": "Entrevista.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "115 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "pdf8",
     "nombre": "Directorio de Comunidades Locales",
     "archivo": "pdf/DirectorioComunidades.pdf",
-    "descripcion": "Entrevista.",
+    "descripcion": "Directorio de comunidades locales. Contacto.",
     "categoria": "pdf",
-    "tamano": "",
+    "tamano": "44 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -269,7 +269,7 @@
     "archivo": "video/Investiga Colina_compressed.webm",
     "descripcion": "Entrevista a Eduardo Pérez, presidente de la ONG Investiga Colina. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "15 MB",
     "thumbnail": "thumbnails/vid01.png"
   },
   {
@@ -278,7 +278,7 @@
     "archivo": "video/La Farfana_compressed.webm",
     "descripcion": "Entrevista a Maite Martínez, presidenta de la coordinadora ambiental La Farfana, defensora medioambiental. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "23 MB",
     "thumbnail": "thumbnails/vid02.png"
   },
   {
@@ -287,7 +287,7 @@
     "archivo": "video/Ministra de Ciencias_compressed.webm",
     "descripcion": "Entrevista a Aisén Etcheverry Escudero, ministra de Ciencia, Tecnología, Conocimiento e Innovación. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "11 MB",
     "thumbnail": "thumbnails/vid03.png"
   },
   {
@@ -296,7 +296,7 @@
     "archivo": "video/Mosacat_compressed.webm",
     "descripcion": "Entrevista a grupo Mosacat, conformado por Norma Holstein (NH), Rodrigo Cavieres (RC), Sandra Leiva (SL), Tania Rodríguez (TR), Tracey Duyvestein (TD), Alejandra Salina (AS), Marisol Mora (MM), Belén Alfaro (BA), Bryan Serrailler (BS). youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "19 MB",
     "thumbnail": "thumbnails/vid04.png"
   },
   {
@@ -305,7 +305,7 @@
     "archivo": "video/No mas Amazon _compressed.webm",
     "descripcion": "Entrevista a Ricardo Carter, miembro del medio de comunicación local El Pincoyazo y miembro de “No + Amazon” y Patricio Hernández, miembro de “No + Amazon”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "19 MB",
     "thumbnail": "thumbnails/vid05.png"
   },
   {
@@ -314,7 +314,7 @@
     "archivo": "video/Pudahuel Despierta_compressed.webm",
     "descripcion": "Entrevista a Alejandro Castillana, Arquitecto y miembro de la organización medioambiental “Pudahuel Despierta”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "20 MB",
     "thumbnail": "thumbnails/vid06.png"
   },
   {
@@ -323,7 +323,7 @@
     "archivo": "video/Resistencia Socioambiental Quilicura_compressed.webm",
     "descripcion": "Entrevista a Rodrigo Vallejos, activista ambiental de Quilicura e integrante de RSQ, Vicente Bardales, abogado e integrante de RSQ y a Alexandra Arancibia, miembro fundador de Resistencia Socioambiental Quilicura y concejala de la municipalidad de Quilicura y profesora de Historia y Geografía. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
-    "tamano": "",
+    "tamano": "23 MB",
     "thumbnail": "thumbnails/vid07.png"
   },
   {
@@ -332,7 +332,7 @@
     "archivo": "https://archivo-1.github.io/archivodenubes/",
     "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
     "categoria": "enlace",
-    "tamano": "",
+    "tamano": "-",
     "thumbnail": "thumbnails/archivodenubes.png"
   }
 
