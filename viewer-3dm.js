@@ -16,7 +16,6 @@
     const damping = 0.85;
     let yaw = 0, pitch = 0;
     const WALK_HEIGHT = 1.7;
-        let modelConfig = null;
 
     // ── Layers state ────────────────────────────────────────────────────────
     let layerMeshes = {}; // layerName -> Mesh[]
@@ -38,7 +37,6 @@
     };
 
     // ── Helpers ─────────────────────────────────────────────────────────────
-
     function getModelFromQuery() {
         const p = new URLSearchParams(window.location.search);
         return p.get('file') || 'torpederas-valparaisoCLS.3dm';
@@ -75,11 +73,9 @@
         const azEl = document.getElementById('az-val'), elEl = document.getElementById('el-val');
         if (azEl) azEl.textContent = az + '°';
         if (elEl) elEl.textContent = el + '°';
-
         const phi = (90 - el) * (Math.PI / 180);
         const theta = (az + 180) * (Math.PI / 180);
         const dist = modelSpan * 2.5;
-
         sun.position.set(
             modelCenter.x + dist * Math.sin(phi) * Math.cos(theta),
             modelCenter.y + dist * Math.cos(phi),
@@ -87,11 +83,7 @@
         );
         sun.target.position.copy(modelCenter);
         sun.target.updateMatrixWorld();
-
-        if (skyUniforms) {
-            skyUniforms['sunPosition'].value.copy(sun.position);
-        }
-
+        if (skyUniforms) skyUniforms['sunPosition'].value.copy(sun.position);
         const d = modelSpan * 1.5;
         sun.shadow.camera.left = -d; sun.shadow.camera.right = d;
         sun.shadow.camera.top = d; sun.shadow.camera.bottom = -d;
@@ -101,7 +93,6 @@
     function changeBackground(type) {
         if (!scene) return;
         if (sky) { scene.remove(sky); sky = null; skyUniforms = null; }
-        
         if (type === 'black') scene.background = new THREE.Color(0x050608);
         else if (type === 'white') scene.background = new THREE.Color(0xffffff);
         else if (type === 'grey') scene.background = new THREE.Color(0x22262e);
@@ -123,8 +114,7 @@
             canvas.width = 2; canvas.height = 512;
             const ctx = canvas.getContext('2d');
             const grad = ctx.createLinearGradient(0, 0, 0, 512);
-            grad.addColorStop(0, '#020617');
-            grad.addColorStop(1, '#1e293b');
+            grad.addColorStop(0, '#020617'); grad.addColorStop(1, '#1e293b');
             ctx.fillStyle = grad; ctx.fillRect(0, 0, 2, 512);
             scene.background = new THREE.CanvasTexture(canvas);
         }
@@ -156,17 +146,12 @@
         const prev = cameraMode;
         cameraMode = mode;
         if ((prev === 'walk' || prev === 'fly') && document.pointerLockElement) document.exitPointerLock();
-
         if (mode === 'orbit') {
-             activeCamera = isOrthoOrbit ? orthoCamera : orbitCamera;
-    orbitControls.object = activeCamera;
-    orbitControls.enabled = true;
-    orbitControls.enableRotate = true;
-    orbitControls.mouseButtons = {  // ← ADD THIS
-        LEFT: THREE.MOUSE.ROTATE,
-        MIDDLE: THREE.MOUSE.DOLLY,
-        RIGHT: THREE.MOUSE.PAN
-    };
+            activeCamera = isOrthoOrbit ? orthoCamera : orbitCamera;
+            orbitControls.object = activeCamera;
+            orbitControls.enabled = true;
+            orbitControls.enableRotate = true;
+            orbitControls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
         } else if (mode === 'walk') {
             activeCamera = walkCamera; orbitControls.enabled = false;
             const target = orbitControls.target.clone();
@@ -179,16 +164,12 @@
             flyCamera.position.copy(orbitCamera.position); flyCamera.lookAt(orbitControls.target);
             yaw = flyCamera.rotation.y; pitch = flyCamera.rotation.x;
         } else if (mode === 'ortho') {
-    activeCamera = orthoCamera;
-    orbitControls.object = orthoCamera;
-    orbitControls.enabled = true;
-    orbitControls.enableRotate = false;
-    orbitControls.mouseButtons = {  // ← ADD THIS
-        LEFT: THREE.MOUSE.PAN,
-        MIDDLE: THREE.MOUSE.DOLLY,
-        RIGHT: THREE.MOUSE.PAN
-    };
-    syncOrthoCamera();
+            activeCamera = orthoCamera;
+            orbitControls.object = orthoCamera;
+            orbitControls.enabled = true;
+            orbitControls.enableRotate = false;
+            orbitControls.mouseButtons = { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+            syncOrthoCamera();
         }
         velocity.set(0, 0, 0);
         updateModeUI();
@@ -291,7 +272,7 @@
         list.innerHTML = '';
         const names = Object.keys(layerMeshes).sort();
         if (names.length === 0) {
-            list.innerHTML = '<div style=\"font-size:0.65rem;color:#6b7280;padding:0.2rem\">No layers found</div>';
+            list.innerHTML = '<div style="font-size:0.65rem;color:#6b7280;padding:0.2rem">No layers found</div>';
             return;
         }
         names.forEach(name => {
@@ -303,15 +284,12 @@
             const lbl = document.createElement('label');
             lbl.className = 'toggle-switch';
             const cb = document.createElement('input');
-            cb.type = 'checkbox';
-            cb.checked = true;
+            cb.type = 'checkbox'; cb.checked = true;
             cb.onchange = () => { if (layerMeshes[name]) layerMeshes[name].forEach(m => m.visible = cb.checked); };
             const track = document.createElement('span');
             track.className = 'toggle-track';
-            lbl.appendChild(cb);
-            lbl.appendChild(track);
-            row.appendChild(span);
-            row.appendChild(lbl);
+            lbl.appendChild(cb); lbl.appendChild(track);
+            row.appendChild(span); row.appendChild(lbl);
             list.appendChild(row);
         });
     }
@@ -379,7 +357,7 @@
     function processDocObjects(doc, rhino, shadowEnabled) {
         const group = new THREE.Group();
         const objs = doc.objects();
-        layerMeshes = {}; // Reset
+        layerMeshes = {};
         function recurse(obj, parent) {
             const geom = obj.geometry(); if (!geom) return;
             if (rhino.ObjectType && geom.objectType === rhino.ObjectType.InstanceReference) {
@@ -407,13 +385,15 @@
     }
 
     async function loadModel() {
-    const name = getModelFromQuery();
-    showLoading('Loading ' + name + '...');    
-    // Cargar configuración del modelo
-    modelConfig = await loadModelConfig();
+        const name = getModelFromQuery();
+        showLoading('Loading ' + name + '...');    
+
+        // Cargamos la configuración de UI antes de procesar el Rhino
+        const config = await loadModelConfig();
+
         rhino3dm().then(async rhino => {
             try {
-                                const res = await fetch(name);
+                const res = await fetch(name);
                 if (!res.ok) throw new Error('Model not found');
                 const doc = rhino.File3dm.fromByteArray(new Uint8Array(await res.arrayBuffer()));
                 const group = processDocObjects(doc, rhino, document.getElementById('toggle-shadows').checked);
@@ -429,69 +409,72 @@
                 is2DModel = groundMeshes.length === 0;
                 resetCamera(); syncOrthoCamera();
                 setCameraMode(is2DModel ? 'ortho' : 'orbit');
-                updateLayersUI(); applyStyle(visualStyle); updateSun(); hideLoading();applyUIConfig(modelConfig);
+                updateLayersUI(); applyStyle(visualStyle); updateSun(); hideLoading();
+
+                // Aplicamos la UI solo si existe configuración
+                applyUIConfig(config);
+
             } catch(e) { console.error(e); showLoading('Error: ' + e.message); }
         });
     }
 
+    // --- NUEVAS FUNCIONES DE UI (INTEGRADAS) ---
+
     async function loadModelConfig() {
-    const modelName = getModelFromQuery();
-    try {
-        const res = await fetch('models.json');
-        if (!res.ok) return null;
-        const models = await res.json();
-        const model = models.find(m => m.file === modelName);
-        return model?.uiConfig || null;
-    } catch(e) {
-        console.warn('Could not load model config:', e);
-        return null;
+        const modelName = decodeURIComponent(getModelFromQuery());
+        try {
+            const res = await fetch('content.json');
+            if (!res.ok) return null;
+            const models = await res.json();
+            // Buscamos coincidencia exacta o si la URL termina en el nombre del archivo
+            return models.find(m => 
+                (m.archivo && (m.archivo === modelName || modelName.endsWith(m.archivo))) || 
+                (m.file && (m.file === modelName || modelName.endsWith(m.file)))
+            )?.uiConfig || null;
+        } catch (e) {
+            console.warn("Config no disponible:", e);
+            return null;
+        }
     }
-}
 
     function applyUIConfig(config) {
-    if (!config) return;
-    
-    if (config.cameraModes) {
-        document.querySelectorAll('.cam-btn[data-mode]').forEach(btn => {
-            const mode = btn.dataset.mode;
-            if (!config.cameraModes.includes(mode)) {
-                btn.style.display = 'none';
-            }
-        });
-    }
-    
-    if (config.visualStyles) {
-        document.querySelectorAll('.style-btn').forEach(btn => {
-            const style = btn.dataset.style;
-            if (!config.visualStyles.includes(style)) {
-                btn.style.display = 'none';
-            }
-        });
-        if (config.visualStyles.length === 0) {
-            const panel = document.getElementById('style-modes');
+        if (!config) return;
+
+        // Modos de cámara
+        if (Array.isArray(config.cameraModes)) {
+            document.querySelectorAll('.cam-btn[data-mode]').forEach(btn => {
+                if (!config.cameraModes.includes(btn.dataset.mode)) btn.style.display = 'none';
+            });
+        }
+
+        // Estilos visuales
+        if (Array.isArray(config.visualStyles)) {
+            document.querySelectorAll('.style-btn[data-style]').forEach(btn => {
+                if (!config.visualStyles.includes(btn.dataset.style)) btn.style.display = 'none';
+            });
+        }
+
+        // Paneles laterales
+        if (config.showLayers === false) {
+            const panel = document.getElementById('layers-panel');
             if (panel) panel.style.display = 'none';
         }
-    }
-    
-    if (config.showLayers === false) {
-        const panel = document.getElementById('layers-panel');
-        if (panel) panel.style.display = 'none';
-    }
-    
-    if (config.showLighting === false) {
-        const envControls = document.getElementById('env-controls');
-        if (envControls) envControls.style.display = 'none';
-    }
-    
-    if (config.showShadows === false) {
-        const shadowToggle = document.getElementById('toggle-shadows');
-        if (shadowToggle) {
-            shadowToggle.checked = false;
-            shadowToggle.parentElement.style.display = 'none';
+
+        if (config.showLighting === false) {
+            const env = document.getElementById('env-controls');
+            if (env) env.style.display = 'none';
         }
-        toggleShadows(false);
+
+        // Sombras
+        if (config.showShadows === false) {
+            const toggle = document.getElementById('toggle-shadows');
+            if (toggle) {
+                toggle.checked = false;
+                if (toggle.parentElement) toggle.parentElement.style.display = 'none';
+            }
+            toggleShadows(false);
+        }
     }
-}
 
     function init() {
         scene = new THREE.Scene();
@@ -499,8 +482,8 @@
         renderer.setPixelRatio(window.devicePixelRatio); renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
+        renderer.outputEncoding = THREE.sRGBEncoding;
         document.body.appendChild(renderer.domElement);
-
 
         const aspect = window.innerWidth / window.innerHeight;
         orbitCamera = new THREE.PerspectiveCamera(50, aspect, 0.1, 1000000);
