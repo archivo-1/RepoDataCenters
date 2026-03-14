@@ -184,35 +184,35 @@
     <!-- Loading overlay -->
     <div id="loading">
         <div class="spinner"></div>
-        <p>Cargando modelo...</p>
+        <p>Loading model...</p>
     </div>
 
     <!-- Controls overlay (top-left) -->
     <div id="overlay">
-        <h1>Controles</h1>
+        <h1>Controls</h1>
         <div id="orbit-controls">
-            <p class="ctrl-row"><span class="ctrl-key">Click Izq.</span> Orbitar</p>
-            <p class="ctrl-row"><span class="ctrl-key">Click Der.</span> Panear</p>
+            <p class="ctrl-row"><span class="ctrl-key">Left-drag</span> Orbit</p>
+            <p class="ctrl-row"><span class="ctrl-key">Right-drag</span> Pan</p>
             <p class="ctrl-row"><span class="ctrl-key">Scroll</span> Zoom</p>
-            <p class="ctrl-row"><span class="ctrl-key">R</span> Restaurar</p>
+            <p class="ctrl-row"><span class="ctrl-key">R</span> Reset view</p>
         </div>
         <div id="walk-controls" style="display:none">
-            <p class="ctrl-row"><span class="ctrl-key">Click</span> Bloq. mouse</p>
-            <p class="ctrl-row"><span class="ctrl-key">W A S D</span> Caminar</p>
-            <p class="ctrl-row"><span class="ctrl-key">Mouse</span> Mirar</p>
-            <p class="ctrl-row"><span class="ctrl-key">Esc</span> Soltar mouse</p>
+            <p class="ctrl-row"><span class="ctrl-key">Click</span> Lock cursor</p>
+            <p class="ctrl-row"><span class="ctrl-key">W A S D</span> Walk</p>
+            <p class="ctrl-row"><span class="ctrl-key">Mouse</span> Look around</p>
+            <p class="ctrl-row"><span class="ctrl-key">Esc</span> Release</p>
         </div>
         <div id="fly-controls" style="display:none">
-            <p class="ctrl-row"><span class="ctrl-key">Click</span> Bloq. mouse</p>
-            <p class="ctrl-row"><span class="ctrl-key">W A S D</span> Mover</p>
-            <p class="ctrl-row"><span class="ctrl-key">Barra Esp./Shift</span> Arriba/Abajo</p>
-            <p class="ctrl-row"><span class="ctrl-key">Mouse</span> Mirar</p>
-            <p class="ctrl-row"><span class="ctrl-key">Esc</span> Soltar Mouse</p>
+            <p class="ctrl-row"><span class="ctrl-key">Click</span> Lock cursor</p>
+            <p class="ctrl-row"><span class="ctrl-key">W A S D</span> Move</p>
+            <p class="ctrl-row"><span class="ctrl-key">Space/Shift</span> Up/Down</p>
+            <p class="ctrl-row"><span class="ctrl-key">Mouse</span> Look around</p>
+            <p class="ctrl-row"><span class="ctrl-key">Esc</span> Release</p>
         </div>
         <div id="ortho-controls" style="display:none">
-            <p class="ctrl-row"><span class="ctrl-key">Arrastrar</span> Panear</p>
+            <p class="ctrl-row"><span class="ctrl-key">Drag</span> Pan</p>
             <p class="ctrl-row"><span class="ctrl-key">Scroll</span> Zoom</p>
-            <p class="ctrl-row"><span class="ctrl-key">R</span> Restaurar</p>
+            <p class="ctrl-row"><span class="ctrl-key">R</span> Reset view</p>
         </div>
         <div class="mode-indicator">Mode: <span id="mode-label">Orbit</span></div>
     </div>
@@ -236,32 +236,32 @@
 
     <!-- Style switcher -->
     <div id="style-modes">
-        <button class="style-btn active" data-style="rendered">Render</button>
-        <button class="style-btn" data-style="clay">Modelo</button>
+        <button class="style-btn active" data-style="rendered">Rendered</button>
+        <button class="style-btn" data-style="clay">Clay</button>
         <button class="style-btn" data-style="wireframe">Wireframe</button>
-        <button class="style-btn" data-style="xray">Transparente</button>
+        <button class="style-btn" data-style="xray">X-Ray</button>
     </div>
 
     <!-- Camera mode buttons -->
     <div id="cam-modes">
-        <button class="cam-btn active" data-mode="orbit">1 · Orbitar</button>
-        <button class="cam-btn" id="ortho-toggle" onclick="toggleOrtho()">&#10697; Vista Ortográfica</button>
-        <button class="cam-btn" data-mode="walk">2 · Caminar</button>
-        <button class="cam-btn" data-mode="fly">3 · Vuelo WASD</button>
-        <button class="cam-btn" data-mode="ortho">4 · Vista Top</button>
+        <button class="cam-btn active" data-mode="orbit">1 · Orbit</button>
+        <button class="cam-btn" id="ortho-toggle" onclick="toggleOrtho()">&#10697; Ortho</button>
+        <button class="cam-btn" data-mode="walk">2 · Walk</button>
+        <button class="cam-btn" data-mode="fly">3 · Fly</button>
+        <button class="cam-btn" data-mode="ortho">4 · Top View</button>
     </div>
 
     <!-- Side controls (bottom-right) -->
     <div id="side-controls">
         <div id="bg-controls" class="panel">
-            <label>Color de fondo</label>
+            <label>Background</label>
             <select id="bg-select">
-                <option value="black">Negro</option>
-                <option value="white">Blanco</option>
-                <option value="grey">Gris</option>
-                <option value="sky">Cielo</option>
-                <option value="sunset">Atardecer</option>
-                <option value="gradient">Gradiente noche</option>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="grey">Grey</option>
+                <option value="sky">Procedural Sky</option>
+                <option value="sunset">Sunset</option>
+                <option value="gradient">Dark Gradient</option>
             </select>
         </div>
         <div id="env-controls" class="panel">
@@ -271,15 +271,15 @@
             <input type="range" id="sun-el" min="0" max="90" value="45">
             <div class="env-row">
                 <input type="checkbox" id="toggle-shadows" checked>
-                <span>Sombras</span>
+                <span>Enable Shadows</span>
             </div>
         </div>
     </div>
 
-    <div id="lock-hint">Click para bloquar cursor — Esc para soltar</div>
+    <div id="lock-hint">Click to lock cursor — Esc to release</div>
 
-    <button id="back-btn" onclick="window.location.href='index.html'">← Volver</button>
-    <button id="reset-btn" onclick="window.resetCamera()">↺ Resetear</button>
+    <button id="back-btn" onclick="window.location.href='index.html'">← Back</button>
+    <button id="reset-btn" onclick="window.resetCamera()">↺ Reset</button>
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.137.5/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.137.5/examples/js/controls/OrbitControls.js"></script>
