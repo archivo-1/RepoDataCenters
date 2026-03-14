@@ -137,11 +137,12 @@
             <input type="text" id="search" placeholder="Buscar..." autocomplete="off">
         </div>
         <select id="sort-order" class="sort-select">
+            <option value="coleccion">Por colecciones</option>
             <option value="default">Por defecto</option>
             <option value="az">Nombre (A-Z)</option>
             <option value="za">Nombre (Z-A)</option>
             <option value="tipo">Por tipo</option>
-            <option value="coleccion">Por colecciones</option>
+            
         </select>
     </div>
 </header>
@@ -164,7 +165,7 @@
     const CATEGORIAS = ['modelo-3d', 'pdf', 'video', 'galeria', 'enlace', 'audio'];
     let activeFilter = 'all';
     let searchQuery = '';
-    let currentSort = 'default';
+    let currentSort = 'coleccion';
 
     const nombresCategoria = {
         'modelo-3d': 'Modelo 3D',
