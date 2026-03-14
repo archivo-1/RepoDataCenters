@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArchVista - Visor Pro Interactivo</title>
+    <title>Repositorio - Visor multimedia</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -99,7 +99,7 @@
 
     <header>
         <div class="nav-group">
-            <a href="index.html" class="btn-action">Volver</a>
+            <a href="index.html" class="btn-action">← Volver</a>
             <h1 id="item-title">Cargando...</h1>
         </div>
         <div id="toolbar-actions" class="nav-group"></div>
@@ -165,8 +165,8 @@
                 const ext = item.archivo.split('.').pop().toLowerCase();
 
                 toolbar.innerHTML = item.categoria === 'enlace' 
-                    ? `<button class="btn-action" onclick="window.open('${item.archivo}', '_blank')">Abrir Link</button>`
-                    : `<a href="${item.archivo}" download class="btn-action">Descargar</a>`;
+                    ? `<button class="btn-action" onclick="window.open('${item.archivo}', '_blank')">⇗ Abrir Link</button>`
+                    : `<a href="${item.archivo}" download class="btn-action">⇓ Descargar</a>`;
 
                 if (item.categoria === 'pdf' || ext === 'pdf') {
                     document.getElementById('zoom-controls').style.display = 'flex';
