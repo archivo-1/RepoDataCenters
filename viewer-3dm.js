@@ -2,13 +2,11 @@
     'use strict';
     // ── Core scene objects ──────────────────────────────────────────────────
     let scene, renderer, orbitCamera, walkCamera, flyCamera, orthoCamera, activeCamera, orbitControls;
-    let sun, hemi, fill, sky, skyUniforms;
     let cameraMode = 'orbit'; 
     let isOrthoOrbit = false;
     let is2DModel = false;
     let modelGroup = null;
     let groundMeshes = [];
-    let modelCenter = new THREE.Vector3();
     let modelSize = new THREE.Vector3();
     let modelSpan = 10;
     const raycaster = new THREE.Raycaster();
@@ -26,6 +24,7 @@
     // ── Visual style ────────────────────────────────────────────────────────
     let visualStyle = 'rendered';
     const meshMatCache = {};
+    let sun, fill, sky, skyUniforms, modelCenter = new THREE.Vector3();
     const LAYER_OVERRIDES = {
         glass: { color: 0xadd8f7, roughness: 0.05, metalness: 0.1, transparent: true, opacity: 0.35 },
         window: { color: 0xadd8f7, roughness: 0.05, metalness: 0.1, transparent: true, opacity: 0.35 },
@@ -39,9 +38,10 @@
     };
 
     // ── Helpers ─────────────────────────────────────────────────────────────
+
     function getModelFromQuery() {
         const p = new URLSearchParams(window.location.search);
-        return p.get('model') || 'torpederas-valparaisoCLS.3dm';
+        return p.get('file') || 'torpederas-valparaisoCLS.3dm';
     }
     function showLoading(msg) {
         const el = document.getElementById('loading');
@@ -413,7 +413,7 @@
     modelConfig = await loadModelConfig();
         rhino3dm().then(async rhino => {
             try {
-                const res = await fetch('models/' + name);
+                                const res = await fetch(name);
                 if (!res.ok) throw new Error('Model not found');
                 const doc = rhino.File3dm.fromByteArray(new Uint8Array(await res.arrayBuffer()));
                 const group = processDocObjects(doc, rhino, document.getElementById('toggle-shadows').checked);
@@ -500,6 +500,7 @@
         renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.95;
         document.body.appendChild(renderer.domElement);
+
 
         const aspect = window.innerWidth / window.innerHeight;
         orbitCamera = new THREE.PerspectiveCamera(50, aspect, 0.1, 1000000);
