@@ -78,6 +78,21 @@
         .grid-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.15rem; }
 
+        /* CSS para los títulos de colecciones */
+        .collection-separator {
+            grid-column: 1 / -1;
+            margin: 1.5rem 0 0.5rem 0;
+            padding-top: 1rem;
+        }
+        .collection-separator h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .collection-separator hr { border: none; border-top: 1px solid var(--border); }
+
         /* ── Card ──────────────────────────────────────────── */
         .card {
             background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
@@ -91,20 +106,18 @@
         .card-body { padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
         .card-title { font-size: 0.88rem; font-weight: 600; color: #f1f3f5; }
         .badge { font-size: 0.6rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 20px; text-transform: uppercase; }
-        
-        /* Colores por defecto para badges */
         .badge-default { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
         
         .card-desc {
-    font-size: 0.77rem;
-    color: var(--muted);
-    line-height: 1.55;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* El prefijo para navegadores actuales */
-    line-clamp: 2;         /* La propiedad estándar que pide VS Code */
-}
+            font-size: 0.77rem;
+            color: var(--muted);
+            line-height: 1.55;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+        }
         .card-footer { padding: 0.65rem 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .btn-view { font-size: 0.73rem; font-weight: 500; padding: 0.3rem 0.8rem; background: var(--accent-dim); color: #93c5fd; border: 1px solid rgba(59,130,246,0.28); border-radius: 6px; cursor: pointer; }
 
@@ -128,6 +141,7 @@
             <option value="az">Nombre (A-Z)</option>
             <option value="za">Nombre (Z-A)</option>
             <option value="tipo">Por tipo</option>
+            <option value="coleccion">Por colecciones</option>
         </select>
     </div>
 </header>
@@ -161,7 +175,6 @@
         'audio': 'Audio'
     };
 
-    // Load models from JSON
     fetch('content.json')
         .then(response => {
             if (!response.ok) throw new Error('Failed to load models');
@@ -176,7 +189,6 @@
         .catch(error => {
             console.error('Error loading models:', error);
             document.getElementById('grid-label').textContent = 'Error loading models';
-            document.getElementById('grid').innerHTML = '<p style="color: #f87171; text-align: center; padding: 2rem;">No se pudo cargar content.json. Asegúrate de que el archivo existe.</p>';
         });
 
     function buildCategoryButtons() {
@@ -208,23 +220,22 @@
     function renderGrid() {
         const grid = document.getElementById('grid');
         
-        // 1. Filtrar
         let visible = MODELS.filter(m => {
             const matchesCategory = (activeFilter === 'all' || m.categoria === activeFilter);
             const matchesSearch = !searchQuery || (m.nombre + ' ' + (m.descripcion || '')).toLowerCase().includes(searchQuery.toLowerCase());
             return matchesCategory && matchesSearch;
         });
 
-        // 2. Ordenar
         if (currentSort === 'az') {
             visible.sort((a, b) => a.nombre.localeCompare(b.nombre));
         } else if (currentSort === 'za') {
             visible.sort((a, b) => b.nombre.localeCompare(a.nombre));
         } else if (currentSort === 'tipo') {
             visible.sort((a, b) => (a.categoria || '').localeCompare(b.categoria || ''));
+        } else if (currentSort === 'coleccion') {
+            visible.sort((a, b) => (a.coleccion || 'Otros').localeCompare(b.coleccion || 'Otros') || a.nombre.localeCompare(b.nombre));
         }
 
-        // 3. Renderizar
         document.getElementById('grid-label').textContent = visible.length + ' item' + (visible.length !== 1 ? 's' : '');
         grid.innerHTML = '';
         
@@ -233,7 +244,20 @@
             return;
         }
 
+        let lastCol = null;
+
         visible.forEach(m => {
+            if (currentSort === 'coleccion') {
+                const currentCol = m.coleccion || 'Otros';
+                if (currentCol !== lastCol) {
+                    const sep = document.createElement('div');
+                    sep.className = 'collection-separator';
+                    sep.innerHTML = `<h2>${currentCol}</h2><hr>`;
+                    grid.appendChild(sep);
+                    lastCol = currentCol;
+                }
+            }
+
             const card = document.createElement('div');
             card.className = 'card';
             card.onclick = () => {
@@ -267,7 +291,6 @@
         });
     }
 
-    // Filter buttons click
     document.getElementById('filters').onclick = (e) => {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -277,13 +300,11 @@
         renderGrid();
     };
 
-    // Search input change
     document.getElementById('search').addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
         renderGrid();
     });
 
-    // Sort selector change
     document.getElementById('sort-order').addEventListener('change', (e) => {
         currentSort = e.target.value;
         renderGrid();
