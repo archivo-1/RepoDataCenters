@@ -1,0 +1,339 @@
+[
+  {
+    "id": "torpederas-valparaisoCLS",
+    "nombre": "3D: Playa Las Torpederas, Valparaíso CL",
+        "archivo": "torpederasValparaisoCL.3dm",
+    "descripcion": "Recorrido del camino costero de Las Torpederas",
+    "categoria": "modelo-3d",
+    "tamano": "~16 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "walk"],
+      "visualStyles": ["rendered", "wireframe"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": true
+    }
+  },
+  {
+    "id": "cable1",
+    "nombre": "3D: Cable Humboldt",
+        "archivo": "cables3d.3dm",
+    "descripcion": "Cable Humboldt para exploración oceanográfica",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "ortho"],
+      "visualStyles": ["rendered", "wireframe"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": true
+    }
+  },
+  {
+    "id": "plano1",
+    "nombre": "Mapa de cables submarinos",
+        "archivo": "mapamundi1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC1",
+    "nombre": "3D: Data Center SCL02",
+        "archivo": "1.3 Data Center SCL02 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC2",
+    "nombre": "3D: Data Center SCL03",
+        "archivo": "1.4 Data Center SCL03 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC3",
+    "nombre": "3D: Data Center SCL04",
+        "archivo": "1.5 Data Center SCL04 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC4",
+    "nombre": "3D: Data Center Hewlett Packard Chile Comercial Ltda",
+        "archivo": "Data Center Hewlett Packard Chile Comercial Ltda 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC5",
+    "nombre": "3D: Proyecto ODATA San Bernardo",
+        "archivo": "DC 11 Proyecto ODATA San Bernardo 1_120260309_135732.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC6",
+    "nombre": "3D: ODATA Datacenter ST01",
+        "archivo": "ODATA Datacenter ST01 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC7",
+    "nombre": "3D: ODATA Datacenter ST02_DC",
+        "archivo": "ODATA Datacenter ST02_DC 07 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC8",
+    "nombre": "3D: EDCSCL01_V1",
+        "archivo": "DC_02_ EDCSCL01_V1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC9",
+    "nombre": "3D: Claro Chile, Data Center Colina",
+        "archivo": "DC 01_Claro Chile, Data Center Colina.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["ortho"],
+      "visualStyles": ["rendered"],
+      "showLayers": true,
+      "showLighting": false,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "pdf1",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Coordinadora La Farfana",
+    "archivo": "pdf/Coordinadora La Farfana.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf2",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Ministra de Ciencias",
+    "archivo": "pdf/Ministra de Ciencias.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf3",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Mosacat",
+    "archivo": "pdf/Mosacat.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf4",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): No + Amazon.pdf",
+    "archivo": "pdf/No + Amazon.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf5",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): ONG Investiga Colina",
+    "archivo": "pdf/ONG Investiga Colina.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf6",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Pudahuel Despierta",
+    "archivo": "pdf/Pudahuel Despierta.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf7",
+    "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Resistencia Socioambiental Quilicura",
+    "archivo": "pdf/Resistencia Socioambiental Quilicura.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "pdf8",
+    "nombre": "Directorio de Comunidades Locales",
+    "archivo": "pdf/DirectorioComunidades.pdf",
+    "descripcion": "Entrevista.",
+    "categoria": "pdf",
+    "tamano": "",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "video1",
+    "nombre": "Video: Investiga Colina",
+    "archivo": "video/Investiga Colina.mp4",
+    "descripcion": "Entrevista a Eduardo Pérez, presidente de la ONG Investiga Colina. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid01.png"
+  },
+  {
+    "id": "video2",
+    "nombre": "Video: La Farfana",
+    "archivo": "video/La Farfana.mp4",
+    "descripcion": "Entrevista a Maite Martínez, presidenta de la coordinadora ambiental La Farfana, defensora medioambiental. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid02.png"
+  },
+  {
+    "id": "video3",
+    "nombre": "Video: Ministra de Ciencias",
+    "archivo": "video/Ministra de Ciencias.mp4",
+    "descripcion": "Entrevista a Aisén Etcheverry Escudero, ministra de Ciencia, Tecnología, Conocimiento e Innovación. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid03.png"
+  },
+  {
+    "id": "video4",
+    "nombre": "Video: Mosacat",
+    "archivo": "video/Mosacat.mp4",
+    "descripcion": "Entrevista a grupo Mosacat, conformado por Norma Holstein (NH), Rodrigo Cavieres (RC), Sandra Leiva (SL), Tania Rodríguez (TR), Tracey Duyvestein (TD), Alejandra Salina (AS), Marisol Mora (MM), Belén Alfaro (BA), Bryan Serrailler (BS). youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid04.png"
+  },
+  {
+    "id": "video5",
+    "nombre": "Video: No + Amazon",
+    "archivo": "video/No mas Amazon .mp4",
+    "descripcion": "Entrevista a Ricardo Carter, miembro del medio de comunicación local El Pincoyazo y miembro de “No + Amazon” y Patricio Hernández, miembro de “No + Amazon”. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid05.png"
+  },
+  {
+    "id": "video6",
+    "nombre": "Video: Pudahuel Despierta",
+    "archivo": "video/Pudahuel Despierta.mp4",
+    "descripcion": "Entrevista a Alejandro Castillana, Arquitecto y miembro de la organización medioambiental “Pudahuel Despierta”. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid06.png"
+  },
+  {
+    "id": "video7",
+    "nombre": "Video: Resistencia Socioambiental Quilicura",
+    "archivo": "video/Resistencia Socioambiental Quilicura.mp4",
+    "descripcion": "Entrevista a Rodrigo Vallejos, activista ambiental de Quilicura e integrante de RSQ, Vicente Bardales, abogado e integrante de RSQ y a Alexandra Arancibia, miembro fundador de Resistencia Socioambiental Quilicura y concejala de la municipalidad de Quilicura y profesora de Historia y Geografía. youtube.com/@Inteligencias.Reflexivas",
+    "categoria": "video",
+    "tamano": "",
+    "thumbnail": "thumbnails/vid07.png"
+  },
+  {
+    "id": "archivo-nubes",
+    "nombre": "Archivo de Nubes (BETA)",
+    "archivo": "https://archivo-1.github.io/archivodenubes/",
+    "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
+    "categoria": "enlace",
+    "tamano": "",
+    "thumbnail": "thumbnails/archivodenubes.png"
+  }
+
+]
