@@ -266,7 +266,7 @@
   {
     "id": "video1",
     "nombre": "Video: Investiga Colina",
-    "archivo": "video/Investiga Colina.mp4",
+    "archivo": "video/Investiga Colina_compressed.webm",
     "descripcion": "Entrevista a Eduardo Pérez, presidente de la ONG Investiga Colina. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -275,7 +275,7 @@
   {
     "id": "video2",
     "nombre": "Video: La Farfana",
-    "archivo": "video/La Farfana.mp4",
+    "archivo": "video/La Farfana_compressed.webm",
     "descripcion": "Entrevista a Maite Martínez, presidenta de la coordinadora ambiental La Farfana, defensora medioambiental. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -284,7 +284,7 @@
   {
     "id": "video3",
     "nombre": "Video: Ministra de Ciencias",
-    "archivo": "video/Ministra de Ciencias.mp4",
+    "archivo": "video/Ministra de Ciencias_compressed.webm",
     "descripcion": "Entrevista a Aisén Etcheverry Escudero, ministra de Ciencia, Tecnología, Conocimiento e Innovación. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -293,7 +293,7 @@
   {
     "id": "video4",
     "nombre": "Video: Mosacat",
-    "archivo": "video/Mosacat.mp4",
+    "archivo": "video/Mosacat_compressed.webm",
     "descripcion": "Entrevista a grupo Mosacat, conformado por Norma Holstein (NH), Rodrigo Cavieres (RC), Sandra Leiva (SL), Tania Rodríguez (TR), Tracey Duyvestein (TD), Alejandra Salina (AS), Marisol Mora (MM), Belén Alfaro (BA), Bryan Serrailler (BS). youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -302,7 +302,7 @@
   {
     "id": "video5",
     "nombre": "Video: No + Amazon",
-    "archivo": "video/No mas Amazon .mp4",
+    "archivo": "video/No mas Amazon _compressed.webm",
     "descripcion": "Entrevista a Ricardo Carter, miembro del medio de comunicación local El Pincoyazo y miembro de “No + Amazon” y Patricio Hernández, miembro de “No + Amazon”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -311,7 +311,7 @@
   {
     "id": "video6",
     "nombre": "Video: Pudahuel Despierta",
-    "archivo": "video/Pudahuel Despierta.mp4",
+    "archivo": "video/Pudahuel Despierta_compressed.webm",
     "descripcion": "Entrevista a Alejandro Castillana, Arquitecto y miembro de la organización medioambiental “Pudahuel Despierta”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
@@ -320,7 +320,7 @@
   {
     "id": "video7",
     "nombre": "Video: Resistencia Socioambiental Quilicura",
-    "archivo": "video/Resistencia Socioambiental Quilicura.mp4",
+    "archivo": "video/Resistencia Socioambiental Quilicura_compressed.webm",
     "descripcion": "Entrevista a Rodrigo Vallejos, activista ambiental de Quilicura e integrante de RSQ, Vicente Bardales, abogado e integrante de RSQ y a Alexandra Arancibia, miembro fundador de Resistencia Socioambiental Quilicura y concejala de la municipalidad de Quilicura y profesora de Historia y Geografía. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "",
