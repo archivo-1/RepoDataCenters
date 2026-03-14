@@ -6,6 +6,7 @@
     "descripcion": "Recorrido del camino costero de Las Torpederas",
     "categoria": "modelo-3d",
     "tamano": "~16 MB",
+    "coleccion": "Investigaciones en Curso",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": ["orbit","ortho","fly"],
@@ -22,6 +23,7 @@
     "descripcion": "Cable Humboldt para exploración oceanográfica",
     "categoria": "modelo-3d",
     "tamano": "~10 MB",
+    "coleccion": "Investigaciones en Curso",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": ["orbit", "ortho"],
@@ -38,6 +40,7 @@
     "descripcion": "Planimetría de cables submarinos globales",
     "categoria": "modelo-3d",
     "tamano": "~10 MB",
+    "coleccion": "Investigaciones en Curso",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": [],
@@ -198,6 +201,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "107 KB",
+    "coleccion": "Entrevistas: La Farfana",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -207,6 +211,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "106 KB",
+    "coleccion": "Entrevistas: Aisén Etcheverry",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -216,6 +221,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "142 KB",
+    "coleccion": "Entrevistas: Mosacat",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -225,6 +231,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "109 KB",
+    "coleccion": "Entrevistas: No + Amazon",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -234,6 +241,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "107 KB",
+    "coleccion": "Entrevistas: ONG Investiga Colina",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -243,6 +251,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "106 KB",
+    "coleccion": "Entrevistas: Pudahuel Despierta",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -252,6 +261,7 @@
     "descripcion": "Entrevista.",
     "categoria": "pdf",
     "tamano": "115 KB",
+    "coleccion": "Entrevistas: Resistencia Socioambiental Quilicura",
     "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
@@ -270,6 +280,7 @@
     "descripcion": "Entrevista a Eduardo Pérez, presidente de la ONG Investiga Colina. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "15 MB",
+    "coleccion": "Entrevistas: ONG Investiga Colina",
     "thumbnail": "thumbnails/vid01.png"
   },
   {
@@ -279,6 +290,7 @@
     "descripcion": "Entrevista a Maite Martínez, presidenta de la coordinadora ambiental La Farfana, defensora medioambiental. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "23 MB",
+    "coleccion": "Entrevistas: La Farfana",
     "thumbnail": "thumbnails/vid02.png"
   },
   {
@@ -288,6 +300,7 @@
     "descripcion": "Entrevista a Aisén Etcheverry Escudero, ministra de Ciencia, Tecnología, Conocimiento e Innovación. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "11 MB",
+    "coleccion": "Entrevistas: Aisén Etcheverry",
     "thumbnail": "thumbnails/vid03.png"
   },
   {
@@ -297,6 +310,7 @@
     "descripcion": "Entrevista a grupo Mosacat, conformado por Norma Holstein (NH), Rodrigo Cavieres (RC), Sandra Leiva (SL), Tania Rodríguez (TR), Tracey Duyvestein (TD), Alejandra Salina (AS), Marisol Mora (MM), Belén Alfaro (BA), Bryan Serrailler (BS). youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "19 MB",
+    "coleccion": "Entrevistas: Mosacat",
     "thumbnail": "thumbnails/vid04.png"
   },
   {
@@ -306,6 +320,7 @@
     "descripcion": "Entrevista a Ricardo Carter, miembro del medio de comunicación local El Pincoyazo y miembro de “No + Amazon” y Patricio Hernández, miembro de “No + Amazon”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "19 MB",
+    "coleccion": "Entrevistas: No + Amazon",
     "thumbnail": "thumbnails/vid05.png"
   },
   {
@@ -315,6 +330,7 @@
     "descripcion": "Entrevista a Alejandro Castillana, Arquitecto y miembro de la organización medioambiental “Pudahuel Despierta”. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "20 MB",
+    "coleccion": "Entrevistas: Pudahuel Despierta",
     "thumbnail": "thumbnails/vid06.png"
   },
   {
@@ -324,6 +340,7 @@
     "descripcion": "Entrevista a Rodrigo Vallejos, activista ambiental de Quilicura e integrante de RSQ, Vicente Bardales, abogado e integrante de RSQ y a Alexandra Arancibia, miembro fundador de Resistencia Socioambiental Quilicura y concejala de la municipalidad de Quilicura y profesora de Historia y Geografía. youtube.com/@Inteligencias.Reflexivas",
     "categoria": "video",
     "tamano": "23 MB",
+    "coleccion": "Entrevistas: Resistencia Socioambiental Quilicura",
     "thumbnail": "thumbnails/vid07.png"
   },
   {
@@ -332,7 +349,8 @@
     "archivo": "https://archivo-1.github.io/archivodenubes/",
     "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
     "categoria": "enlace",
-    "tamano": "-",
+    "tamano": "(vía GitHub)",
+    "coleccion": "Investigaciones en Curso",
     "thumbnail": "thumbnails/archivodenubes.png"
   }
 
