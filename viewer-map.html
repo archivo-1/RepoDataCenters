@@ -2,25 +2,27 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ArchVista - Visor Cartográfico</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
+        /* BLOQUEO TOTAL DE LA VENTANA PARA EVITAR QUE DESAPAREZCAN ELEMENTOS */
         body { 
             background: #050608; 
             color: #e5e7eb; 
             font-family: system-ui, sans-serif; 
-            height: 100vh; 
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
             display: flex; 
             flex-direction: column; 
             overflow: hidden;
-            touch-action: none; 
         }
         
         header { 
             height: 52px; 
+            min-height: 52px;
             padding: 0 0.8rem; 
             background: #0d1117; 
             border-bottom: 1px solid rgba(255,255,255,0.08); 
@@ -28,8 +30,7 @@
             align-items: center; 
             justify-content: space-between; 
             gap: 10px;
-            z-index: 1000;
-            touch-action: none;
+            z-index: 2000;
             user-select: none;
         }
         
@@ -55,6 +56,7 @@
             align-items: center;
             white-space: nowrap;
             flex-shrink: 0;
+            background: rgba(255,255,255,0.02);
         }
         .btn-header:hover { color: #fff; background: rgba(255,255,255,0.05); border-color: #00f2ff; }
 
@@ -63,25 +65,65 @@
             .btn-osm-short { display: inline !important; }
             header { padding: 0 0.5rem; }
         }
+        @media (min-width: 481px) { .btn-osm-short { display: none; } }
 
-        @media (min-width: 481px) {
-            .btn-osm-short { display: none; }
+        /* EL MAPA LLENA EL RESTO DEL ESPACIO FIJO */
+        #map { 
+            flex: 1; 
+            width: 100%;
+            background: #050608; 
+            position: relative; 
         }
-
-        #map { flex: 1; background: #050608; position: relative; touch-action: auto; }
         
         /* ── Ocultar controles fantasma del plugin Leaflet-Rotate ── */
         .leaflet-control-rotate, .leaflet-control-compass { display: none !important; }
 
-        /* ── FIX RENDERIZADO MÓVIL: Aceleración por GPU para la capa de vectores ── */
-        .leaflet-overlay-pane svg {
-            transform: translateZ(0);
-            will-change: transform;
+        /* ── GLOBO DE INFORMACIÓN (Cápsula) ── */
+        #info-capsule {
+            position: absolute;
+            bottom: -150px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 400px;
+            background: rgba(13, 17, 23, 0.95);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+            z-index: 1500;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            pointer-events: none; /* Evita bloquear toques si está invisible */
+            opacity: 0;
+        }
+
+        #info-capsule.visible {
+            bottom: 25px; 
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .capsule-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .capsule-title { font-size: 0.9rem; font-weight: 600; color: #fff; line-height: 1.2; }
+        .capsule-close {
+            background: none; border: none; color: #9ca3af; font-size: 1.5rem;
+            cursor: pointer; line-height: 0.8; padding: 0 0 5px 10px;
+        }
+        .capsule-close:hover { color: #fff; }
+        .capsule-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.5; max-height: 100px; overflow-y: auto; }
+        .capsule-meta {
+            font-size: 0.7rem; color: #00f2ff; background: rgba(0, 242, 255, 0.1);
+            padding: 3px 8px; border-radius: 4px; align-self: flex-start;
+            margin-top: 5px; border: 1px solid rgba(0, 242, 255, 0.2);
         }
 
         /* ── GUI: SOLAPA EXPANDIBLE ── */
         .collection-nav-container { 
-            position: fixed; 
+            position: absolute; 
             top: 50%; 
             right: 0; 
             transform: translateY(-50%);
@@ -89,166 +131,59 @@
             display: flex;
             align-items: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            touch-action: none;
         }
-
-        @media (pointer: fine) {
-            .collection-nav-container { right: 14px; }
-        }
+        @media (pointer: fine) { .collection-nav-container { right: 14px; } }
         
         .coll-side-tab {
-            background: rgba(0, 0, 0, 0.9);
-            color: #00f2ff;
-            border: 1px solid rgba(0, 242, 255, 0.4);
-            border-right: none;
-            padding: 18px 7px;
-            border-radius: 10px 0 0 10px;
-            cursor: pointer;
-            writing-mode: vertical-rl;
-            text-transform: uppercase;
-            font-size: 0.58rem;
-            font-weight: 800;
-            letter-spacing: 0.15em;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-            user-select: none;
+            background: rgba(0, 0, 0, 0.9); color: #00f2ff;
+            border: 1px solid rgba(0, 242, 255, 0.4); border-right: none;
+            padding: 18px 7px; border-radius: 10px 0 0 10px;
+            cursor: pointer; writing-mode: vertical-rl; text-transform: uppercase;
+            font-size: 0.58rem; font-weight: 800; letter-spacing: 0.15em;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.4); user-select: none;
         }
 
         .coll-panel {
-            background: #0d1117;
-            width: 0; height: 0;
-            overflow: hidden;
+            background: #0d1117; width: 0; height: 0; overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid transparent;
+            display: flex; flex-direction: column; border: 1px solid transparent;
         }
 
         .collection-nav-container.open .coll-panel {
-            width: 260px;
-            height: 60vh;
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-right: none;
-            border-radius: 10px 0 0 10px;
-            box-shadow: -20px 0 40px rgba(0,0,0,0.8);
+            width: 260px; height: 60vh;
+            border: 1px solid rgba(0, 242, 255, 0.3); border-right: none;
+            border-radius: 10px 0 0 10px; box-shadow: -20px 0 40px rgba(0,0,0,0.8);
             overflow-y: auto;
         }
 
         .coll-item {
-            display: block;
-            padding: 0.8rem 1rem;
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 0.75rem;
+            display: block; padding: 0.8rem 1rem; color: #9ca3af;
+            text-decoration: none; font-size: 0.75rem;
             border-bottom: 1px solid rgba(255,255,255,0.03);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .coll-item:hover { background: rgba(0, 242, 255, 0.1); color: #fff; }
         .coll-item.active { color: #00f2ff; background: rgba(0, 242, 255, 0.05); border-right: 3px solid #00f2ff; }
 
         /* ── BRÚJULA ── */
         .compass-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(17, 24, 39, 0.9);
-            border: 1px solid rgba(255,255,255,0.2);
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            touch-action: none;
+            position: absolute; top: 20px; right: 20px; z-index: 1000;
+            background: rgba(17, 24, 39, 0.9); border: 1px solid rgba(255,255,255,0.2);
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .compass-arrow {
             width: 0; height: 0; 
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-bottom: 18px solid #ff4d4d;
-            transition: transform 0.1s linear;
+            border-left: 7px solid transparent; border-right: 7px solid transparent;
+            border-bottom: 18px solid #ff4d4d; transition: transform 0.1s linear;
         }
         .compass-label { font-size: 9px; font-weight: bold; color: #fff; }
 
-        /* ── GLOBO DE INFORMACIÓN (Cápsula) ── */
-        #info-capsule {
-            position: fixed;
-            bottom: -150%; /* Oculto fuera de pantalla por defecto */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 92%;
-            max-width: 450px;
-            background: rgba(13, 17, 23, 0.95);
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-radius: 12px;
-            padding: 1.2rem;
-            z-index: 2000;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            touch-action: none;
-        }
-
-        #info-capsule.visible {
-            bottom: 25px; /* Sube cuando se activa */
-        }
-
-        .capsule-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .capsule-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.2;
-        }
-        .capsule-close {
-            background: none;
-            border: none;
-            color: #9ca3af;
-            font-size: 1.5rem;
-            cursor: pointer;
-            line-height: 0.8;
-            padding: 0 0 5px 10px;
-            transition: color 0.2s;
-        }
-        .capsule-close:hover { color: #fff; }
-        .capsule-desc {
-            font-size: 0.8rem;
-            color: #9ca3af;
-            line-height: 1.5;
-            max-height: 100px;
-            overflow-y: auto;
-        }
-        .capsule-meta {
-            font-size: 0.7rem;
-            color: #00f2ff;
-            background: rgba(0, 242, 255, 0.1);
-            padding: 3px 8px;
-            border-radius: 4px;
-            align-self: flex-start;
-            margin-top: 5px;
-            border: 1px solid rgba(0, 242, 255, 0.2);
-        }
-
-        /* Controles de Leaflet */
+        /* Ajustes UI Leaflet */
         .leaflet-control-scale { margin-bottom: 25px !important; margin-left: 15px !important; }
         .leaflet-control-scale-line { 
-            background: rgba(13, 17, 23, 0.8) !important; 
-            color: #00f2ff !important; 
-            border: 1px solid #00f2ff !important; 
-            border-top: none !important;
-            font-size: 11px !important;
-            text-shadow: none !important;
+            background: rgba(13, 17, 23, 0.8) !important; color: #00f2ff !important; 
+            border: 1px solid #00f2ff !important; border-top: none !important; font-size: 11px !important; text-shadow: none !important;
         }
     </style>
 </head>
@@ -272,11 +207,11 @@
 
     <div id="info-capsule">
         <div class="capsule-header">
-            <div class="capsule-title" id="capsule-title">Título de la capa</div>
+            <div class="capsule-title" id="capsule-title">...</div>
             <button class="capsule-close" onclick="document.getElementById('info-capsule').classList.remove('visible')">×</button>
         </div>
-        <div class="capsule-desc" id="capsule-desc">Cargando descripción detallada de la infraestructura...</div>
-        <div class="capsule-meta" id="capsule-meta">Metadatos</div>
+        <div class="capsule-desc" id="capsule-desc">...</div>
+        <div class="capsule-meta" id="capsule-meta">...</div>
     </div>
 
     <div id="map">
@@ -290,11 +225,6 @@
     <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
 
     <script>
-        // Bloqueo de zoom en UI
-        document.addEventListener('touchstart', e => {
-            if (e.touches.length > 1 && !e.target.closest('#map')) e.preventDefault();
-        }, { passive: false });
-
         const params = new URLSearchParams(window.location.search);
         const itemId = params.get('id');
 
@@ -307,22 +237,23 @@
             document.getElementById('map-title').textContent = item.nombre;
             setupCollectionSideNav(data, item);
 
-            // Capas base
             const layerConfig = { attribution: '&copy; CARTO' };
             const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', layerConfig);
             const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', layerConfig);
             const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', layerConfig);
 
-            // Se elimina L.canvas() para permitir que SVG aproveche la aceleración HW inyectada en el CSS
+            // OPTIMIZACIÓN: Renderizador Canvas con "tolerance" para que sea fácil tocar la línea con el dedo en móvil
+            const canvasRenderer = L.canvas({ padding: 0.5, tolerance: 10 });
+
             const map = L.map('map', {
                 center: [item.lat || -33.04, item.lon || -71.61],
                 zoom: item.zoom || 13,
                 layers: [dark],
                 rotate: true,
                 touchRotate: true,
-                rotateControl: false, // APAGA EL BOTÓN FANTASMA DE LA BRÚJULA NATIVA
+                rotateControl: false, // APAGA EL BOTÓN FANTASMA DE ROTACIÓN
                 zoomAnimation: true,
-                fadeAnimation: true
+                renderer: canvasRenderer 
             });
 
             L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
@@ -333,30 +264,39 @@
                 needle.style.transform = `rotate(${-map.getBearing()}deg)`;
             });
 
-            const geoStyle = { color: "#00f2ff", weight: 3, opacity: 0.8, fillColor: "#00f2ff", fillOpacity: 0.15 };
+            // Si el usuario toca el fondo del mapa (no la geometría), ocultamos la cápsula
+            map.on('click', () => {
+                document.getElementById('info-capsule').classList.remove('visible');
+            });
+
+            const geoStyle = { color: "#00f2ff", weight: 4, opacity: 0.9, fillColor: "#00f2ff", fillOpacity: 0.2 };
             
             if (item.archivo) {
                 const path = item.archivo.startsWith('data/') ? item.archivo : `data/${item.archivo}`;
                 fetch(path).then(r => r.json()).then(geoData => {
-                    const layer = L.geoJSON(geoData, { style: geoStyle }).addTo(map);
                     
-                    // Zoom inicial general
+                    const layer = L.geoJSON(geoData, { 
+                        style: geoStyle,
+                        renderer: canvasRenderer,
+                        interactive: true // Asegura que la capa escuche eventos de ratón/toque
+                    }).addTo(map);
+                    
                     map.fitBounds(layer.getBounds(), { padding: [20, 20] });
                     const center = layer.getBounds().getCenter();
                     const osmBtn = document.getElementById('btn-osm');
                     osmBtn.href = `https://www.openstreetmap.org/?mlat=${center.lat}&mlon=${center.lng}#map=17/${center.lat}/${center.lng}`;
                     osmBtn.style.display = 'flex';
 
-                    // EVENTO DE INTERACCIÓN: Click/Touch sobre el GeoJSON
+                    // EVENTO: Tocar la geometría
                     layer.on('click', function(e) {
-                        // 1. Centrar y hacer zoom suave a la capa tocada
-                        map.flyToBounds(e.sourceTarget.getBounds(), {
-                            padding: [40, 40],
-                            duration: 0.8 // Duración de la animación en segundos
-                        });
+                        L.DomEvent.stopPropagation(e); // Evita que el clic pase al fondo del mapa y cierre la cápsula
 
-                        // 2. Poblar la cápsula de info con los datos del JSON
-                        document.getElementById('capsule-title').textContent = item.nombre;
+                        // 1. Centrar y hacer zoom a la sección tocada
+                        const bounds = e.layer.getBounds ? e.layer.getBounds() : layer.getBounds();
+                        map.flyToBounds(bounds, { padding: [40, 40], duration: 0.6 });
+
+                        // 2. Llenar los datos de la cápsula
+                        document.getElementById('capsule-title').textContent = item.nombre || 'Infraestructura';
                         document.getElementById('capsule-desc').textContent = item.descripcion || 'Geometría estructural del proyecto.';
                         document.getElementById('capsule-meta').textContent = item.tamano ? `${item.tamano} | GeoJSON` : 'Capa Vectorial GeoJSON';
                         
@@ -365,11 +305,6 @@
                     });
                 });
             }
-
-            // Ocultar cápsula si se toca el fondo del mapa (opcional pero recomendado)
-            map.on('click', function(e) {
-                document.getElementById('info-capsule').classList.remove('visible');
-            });
         }
 
         function setupCollectionSideNav(allData, currentItem) {
@@ -381,6 +316,7 @@
             const container = document.getElementById('collection-nav');
             container.style.display = 'flex';
             const itemList = document.getElementById('collItemList');
+            
             itemList.innerHTML = siblings.map(i => {
                 let url = i.categoria === 'modelo-3d' ? `viewer.html?file=models/${i.archivo}` : 
                           (i.categoria === 'mapa' ? `viewer-map.html?id=${i.id}` : `viewer-media.html?id=${i.id}`);
@@ -391,6 +327,8 @@
                 e.stopPropagation();
                 container.classList.toggle('open');
             };
+            
+            // Cerrar al tocar fuera de la solapa
             document.addEventListener('pointerdown', e => {
                 if (!container.contains(e.target) && !e.target.closest('.leaflet-control')) {
                     container.classList.remove('open');
