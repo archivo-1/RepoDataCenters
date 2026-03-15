@@ -162,7 +162,6 @@
         }
         .compass-label { font-size: 9px; font-weight: bold; color: #fff; }
 
-        /* Estilos para controles de Leaflet */
         .leaflet-control-scale { margin-bottom: 25px !important; margin-left: 15px !important; }
         .leaflet-control-scale-line { 
             background: rgba(13, 17, 23, 0.8) !important; 
@@ -203,7 +202,6 @@
     <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
 
     <script>
-        // Bloqueo de zoom en UI
         document.addEventListener('touchstart', e => {
             if (e.touches.length > 1 && !e.target.closest('#map')) e.preventDefault();
         }, { passive: false });
@@ -220,10 +218,11 @@
             document.getElementById('map-title').textContent = item.nombre;
             setupCollectionSideNav(data, item);
 
-            // Capas base
-            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
-            const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
-            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM' });
+            // Capas base con optimización de carga
+            const layerConfig = { attribution: '&copy; CARTO', updateWhenZooming: false, updateWhenIdle: true };
+            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', layerConfig);
+            const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', layerConfig);
+            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', layerConfig);
 
             const map = L.map('map', {
                 center: [item.lat || -33.04, item.lon || -71.61],
@@ -231,10 +230,14 @@
                 layers: [dark],
                 rotate: true,
                 touchRotate: true,
-                renderer: L.canvas() // Rendimiento optimizado
+                // MEJORA: Configuraciones para eliminar el delay de geometría
+                zoomAnimation: true,
+                zoomAnimationThreshold: 4,
+                fadeAnimation: true,
+                markerZoomAnimation: true,
+                renderer: L.canvas({ padding: 0.5 }) // Padding extra ayuda a suavizar bordes al mover
             });
 
-            // Re-instanciar controles eliminados
             L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
             L.control.scale({ metric: true, imperial: false, position: 'bottomleft' }).addTo(map);
 
@@ -248,7 +251,12 @@
             if (item.archivo) {
                 const path = item.archivo.startsWith('data/') ? item.archivo : `data/${item.archivo}`;
                 fetch(path).then(r => r.json()).then(geoData => {
-                    const layer = L.geoJSON(geoData, { style: geoStyle }).addTo(map);
+                    const layer = L.geoJSON(geoData, { 
+                        style: geoStyle,
+                        // Forzamos que esta capa use el renderer global optimizado
+                        renderer: map.options.renderer 
+                    }).addTo(map);
+                    
                     map.fitBounds(layer.getBounds(), { padding: [20, 20] });
                     const center = layer.getBounds().getCenter();
                     const osmBtn = document.getElementById('btn-osm');
