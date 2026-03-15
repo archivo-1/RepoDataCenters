@@ -163,39 +163,6 @@
     }
   },
   {
-    "id": "DC8",
-    "nombre": "3D: EDCSCL01_V1",
-        "archivo": "DC_02_ EDCSCL01_V1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC9",
-    "nombre": "3D: Claro Chile, Data Center Colina",
-        "archivo": "DC 01_Claro Chile, Data Center Colina.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
     "id": "pdf1",
     "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Coordinadora La Farfana",
     "archivo": "pdf/Coordinadora La Farfana.pdf",
@@ -355,10 +322,27 @@
     "thumbnail": "thumbnails/archivodenubes.png"
   },
   {
+    "id": "DC1_3d",
+    "nombre": "[3D] Claro Chile, Data Center Colina",
+        "archivo": "DC 01_Claro Chile, Data Center Colina.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "0.9 MB",
+    "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
     "id": "DC1_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Claro-Chile, Data Center Colina",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=6156448",
-    "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
+    "descripcion": "-",
     "categoria": "enlace",
     "tamano": "(vía seria.sea.gob.cl)",
     "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
@@ -368,10 +352,47 @@
     "id": "DC1_MAPS",
     "nombre": " [Mapa] Ubicación del Proyecto: Claro-Chile, Data Center Colina",
     "archivo": "data/DC1_1.geojson",
-    "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
+    "descripcion": "-",
     "categoria": "mapa",
-    "tamano": "(vía Google Maps)",
+    "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC2_3d",
+    "nombre": "[3D] Data Center EDCSCL01",
+        "archivo": "DC_02_ EDCSCL01_V1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "0.1 MB",
+    "coleccion": "Data Centers: Data Center EDCSCL01",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC2_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center EDCSCL01",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2152904629",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center EDCSCL01",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC2_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center EDCSCL01",
+    "archivo": "data/DC2.geojson",
+    "descripcion": "-",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center EDCSCL01",
     "thumbnail": "thumbnails/mapsthumb.png"
   }
 ]
