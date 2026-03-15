@@ -27,7 +27,7 @@
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": ["orbit", "ortho"],
-      "visualStyles": ["rendered", "clay","wireframe"],
+      "visualStyles": ["clay","wireframe"],
       "showLayers": false,
       "showLighting": true,
       "showShadows": true
@@ -185,6 +185,7 @@
     "descripcion": "Planimetría de cables submarinos globales",
     "categoria": "modelo-3d",
     "tamano": "~10 MB",
+    "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
     "thumbnail": "thumbnails/3dthumb.png",
     "uiConfig": {
       "cameraModes": ["orbit", "fly"],
@@ -352,6 +353,25 @@
     "tamano": "(vía GitHub)",
     "coleccion": "Investigaciones en Curso",
     "thumbnail": "thumbnails/archivodenubes.png"
+  },
+  {
+    "id": "DC1_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Claro-Chile, Data Center Colina",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=6156448",
+    "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC1_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Claro-Chile, Data Center Colina",
+    "archivo": "data/DC1_1.geojson",
+    "descripcion": "[EN CONSTRUCCIÓN] Proyecto de mapeo de infraestructuras en Chile",
+    "categoria": "mapa",
+    "tamano": "(vía Google Maps)",
+    "coleccion": "Data Centers: Claro-Chile, Data Center Colina, Liray",
+    "thumbnail": "thumbnails/mapsthumb.png"
   }
-
 ]
