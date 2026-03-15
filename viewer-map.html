@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchVista - Visor Cartográfico</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #050608; color: #e5e7eb; font-family: system-ui, sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        header { height: 52px; padding: 0 1.2rem; background: #0d1117; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+        
+        .btn-header { 
+            color: #9ca3af; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            padding: 5px 12px; 
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        .btn-header:hover { color: #fff; background: rgba(255,255,255,0.05); border-color: #00f2ff; }
+
+        #map { flex: 1; background: #050608; position: relative; }
+        
+        /* ── GUI: SOLAPA EXPANDIBLE ── */
+        .collection-nav-container { 
+            position: fixed; 
+            top: 50%; 
+            right: 0; 
+            transform: translateY(-50%);
+            z-index: 1100; /* Por encima de los controles de Leaflet */
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (pointer: fine) {
+            .collection-nav-container { right: 14px; }
+        }
+        
+        .coll-side-tab {
+            background: rgba(0, 0, 0, 0.9);
+            color: #00f2ff;
+            border: 1px solid rgba(0, 242, 255, 0.4);
+            border-right: none;
+            padding: 18px 7px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.4);
+            user-select: none;
+        }
+
+        .coll-panel {
+            background: #0d1117;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+        }
+
+        .collection-nav-container.open .coll-panel {
+            width: 280px;
+            height: 65vh;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -20px 0 40px rgba(0,0,0,0.8);
+        }
+
+        .collection-nav-container.open .coll-side-tab {
+            border-radius: 0 10px 10px 0;
+            border-left: none;
+            border-right: 1px solid rgba(0, 242, 255, 0.4);
+            order: 2;
+        }
+
+        .coll-panel-header { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .coll-panel-header h2 { font-size: 0.65rem; text-transform: uppercase; color: #00f2ff; letter-spacing: 0.1em; }
+
+        .coll-item {
+            display: block;
+            padding: 0.9rem 1.2rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .coll-item:hover { background: rgba(0, 242, 255, 0.1); color: #fff; padding-left: 1.5rem; }
+        .coll-item.active { color: #00f2ff; background: rgba(0, 242, 255, 0.05); font-weight: 600; border-right: 3px solid #00f2ff; }
+
+        /* BRÚJULA Y CONTROLES */
+        .compass-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.9);
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .compass-arrow {
+            width: 0; height: 0; 
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 20px solid #ff4d4d;
+            transition: transform 0.1s linear;
+        }
+
+        .compass-label { font-size: 10px; font-weight: bold; margin-top: 2px; color: #fff; }
+
+        .leaflet-control-scale { margin-bottom: 25px !important; margin-left: 15px !important; }
+        .leaflet-control-scale-line { 
+            background: rgba(13, 17, 23, 0.8) !important; 
+            color: #00f2ff !important; 
+            border: 1px solid #00f2ff !important; 
+            border-top: none !important;
+            font-size: 11px !important;
+            text-shadow: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .collection-nav-container { right: 0 !important; }
+            .collection-nav-container.open .coll-panel { width: 240px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="btn-header">← Volver</a>
+        <div id="map-title" style="font-size: 0.9rem; font-weight: 500;">Cargando infraestructura...</div>
+        <a id="btn-osm" href="#" target="_blank" class="btn-header" style="display: none;">⇗ OpenStreetMap</a>
+    </header>
+
+    <div class="collection-nav-container" id="collection-nav" style="display: none;">
+        <div class="coll-side-tab" id="collTab">Colección</div>
+        <div class="coll-panel" id="collPanel">
+            <div class="coll-panel-header">
+                <h2 id="collNameLabel">Navegar</h2>
+            </div>
+            <div id="collItemList"></div>
+        </div>
+    </div>
+
+    <div id="map">
+        <div class="compass-container">
+            <div id="compass-needle" class="compass-arrow"></div>
+            <div class="compass-label">N</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const itemId = params.get('id');
+
+        async function initMap() {
+            const res = await fetch('content.json');
+            const data = await res.json();
+            const item = data.find(m => m.id === itemId);
+            if (!item) return;
+
+            document.getElementById('map-title').textContent = item.nombre;
+            
+            // Inicializar solapa
+            setupCollectionSideNav(data, item);
+
+            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
+            const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
+            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM' });
+
+            const map = L.map('map', {
+                center: [item.lat || -33.04, item.lon || -71.61],
+                zoom: item.zoom || 13,
+                layers: [dark],
+                rotate: true,
+                touchRotate: true,
+                bearing: 0
+            });
+
+            L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
+            L.control.scale({ metric: true, imperial: false, position: 'bottomleft' }).addTo(map);
+
+            const needle = document.getElementById('compass-needle');
+            map.on('rotate', () => {
+                const angle = map.getBearing();
+                needle.style.transform = `rotate(${-angle}deg)`;
+            });
+
+            const geoStyle = { color: "#00f2ff", weight: 3, opacity: 0.9, fillColor: "#00f2ff", fillOpacity: 0.2 };
+            
+            if (item.archivo) {
+                const path = item.archivo.startsWith('data/') ? item.archivo : `data/${item.archivo}`;
+                fetch(path).then(r => r.json()).then(geoData => {
+                    const layer = L.geoJSON(geoData, { style: geoStyle }).addTo(map);
+                    map.fitBounds(layer.getBounds());
+                    const center = layer.getBounds().getCenter();
+                    const osmBtn = document.getElementById('btn-osm');
+                    osmBtn.href = `https://www.openstreetmap.org/?mlat=${center.lat}&mlon=${center.lng}#map=17/${center.lat}/${center.lng}`;
+                    osmBtn.style.display = 'flex';
+                });
+            }
+        }
+
+        function setupCollectionSideNav(allData, currentItem) {
+            const collName = currentItem.coleccion;
+            if (!collName) return;
+
+            const siblings = allData.filter(i => i.coleccion === collName);
+            if (siblings.length <= 1) return;
+
+            const container = document.getElementById('collection-nav');
+            container.style.display = 'flex';
+            document.getElementById('collNameLabel').textContent = collName;
+
+            const itemList = document.getElementById('collItemList');
+            itemList.innerHTML = siblings.map(i => {
+                let url = "";
+                if (i.categoria === 'modelo-3d') url = `viewer.html?file=models/${i.archivo}`;
+                else if (i.categoria === 'mapa') url = `viewer-map.html?id=${i.id}`;
+                else url = `viewer-media.html?id=${i.id}`;
+                return `<a href="${url}" class="coll-item ${i.id === currentItem.id ? 'active' : ''}">${i.nombre}</a>`;
+            }).join('');
+
+            const tab = document.getElementById('collTab');
+            tab.addEventListener('click', (e) => {
+                e.stopPropagation();
+                container.classList.toggle('open');
+            });
+
+            document.addEventListener('pointerdown', (e) => {
+                if (!container.contains(e.target) && container.classList.contains('open')) {
+                    container.classList.remove('open');
+                }
+            });
+        }
+
+        initMap();
+    </script>
+</body>
+</html>
