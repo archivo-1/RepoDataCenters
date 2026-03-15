@@ -70,6 +70,16 @@
 
         #map { flex: 1; background: #050608; position: relative; touch-action: auto; }
         
+        /* ── Ocultar controles fantasma del plugin Leaflet-Rotate ── */
+        .leaflet-control-rotate, .leaflet-control-compass { display: none !important; }
+
+        /* ── FIX RENDERIZADO MÓVIL: Aceleración por GPU para la capa de vectores ── */
+        .leaflet-overlay-pane svg {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* ── GUI: SOLAPA EXPANDIBLE ── */
         .collection-nav-container { 
             position: fixed; 
             top: 50%; 
@@ -137,6 +147,7 @@
         .coll-item:hover { background: rgba(0, 242, 255, 0.1); color: #fff; }
         .coll-item.active { color: #00f2ff; background: rgba(0, 242, 255, 0.05); border-right: 3px solid #00f2ff; }
 
+        /* ── BRÚJULA ── */
         .compass-container {
             position: absolute;
             top: 20px;
@@ -162,6 +173,74 @@
         }
         .compass-label { font-size: 9px; font-weight: bold; color: #fff; }
 
+        /* ── GLOBO DE INFORMACIÓN (Cápsula) ── */
+        #info-capsule {
+            position: fixed;
+            bottom: -150%; /* Oculto fuera de pantalla por defecto */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 450px;
+            background: rgba(13, 17, 23, 0.95);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+            z-index: 2000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            touch-action: none;
+        }
+
+        #info-capsule.visible {
+            bottom: 25px; /* Sube cuando se activa */
+        }
+
+        .capsule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .capsule-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .capsule-close {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 0.8;
+            padding: 0 0 5px 10px;
+            transition: color 0.2s;
+        }
+        .capsule-close:hover { color: #fff; }
+        .capsule-desc {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            line-height: 1.5;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .capsule-meta {
+            font-size: 0.7rem;
+            color: #00f2ff;
+            background: rgba(0, 242, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+            margin-top: 5px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        /* Controles de Leaflet */
         .leaflet-control-scale { margin-bottom: 25px !important; margin-left: 15px !important; }
         .leaflet-control-scale-line { 
             background: rgba(13, 17, 23, 0.8) !important; 
@@ -191,6 +270,15 @@
         </div>
     </div>
 
+    <div id="info-capsule">
+        <div class="capsule-header">
+            <div class="capsule-title" id="capsule-title">Título de la capa</div>
+            <button class="capsule-close" onclick="document.getElementById('info-capsule').classList.remove('visible')">×</button>
+        </div>
+        <div class="capsule-desc" id="capsule-desc">Cargando descripción detallada de la infraestructura...</div>
+        <div class="capsule-meta" id="capsule-meta">Metadatos</div>
+    </div>
+
     <div id="map">
         <div class="compass-container">
             <div id="compass-needle" class="compass-arrow"></div>
@@ -202,6 +290,7 @@
     <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
 
     <script>
+        // Bloqueo de zoom en UI
         document.addEventListener('touchstart', e => {
             if (e.touches.length > 1 && !e.target.closest('#map')) e.preventDefault();
         }, { passive: false });
@@ -218,24 +307,22 @@
             document.getElementById('map-title').textContent = item.nombre;
             setupCollectionSideNav(data, item);
 
-            // Capas base con optimización de carga
-            const layerConfig = { attribution: '&copy; CARTO', updateWhenZooming: false, updateWhenIdle: true };
+            // Capas base
+            const layerConfig = { attribution: '&copy; CARTO' };
             const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', layerConfig);
             const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', layerConfig);
             const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', layerConfig);
 
+            // Se elimina L.canvas() para permitir que SVG aproveche la aceleración HW inyectada en el CSS
             const map = L.map('map', {
                 center: [item.lat || -33.04, item.lon || -71.61],
                 zoom: item.zoom || 13,
                 layers: [dark],
                 rotate: true,
                 touchRotate: true,
-                // MEJORA: Configuraciones para eliminar el delay de geometría
+                rotateControl: false, // APAGA EL BOTÓN FANTASMA DE LA BRÚJULA NATIVA
                 zoomAnimation: true,
-                zoomAnimationThreshold: 4,
-                fadeAnimation: true,
-                markerZoomAnimation: true,
-                renderer: L.canvas({ padding: 0.5 }) // Padding extra ayuda a suavizar bordes al mover
+                fadeAnimation: true
             });
 
             L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
@@ -251,19 +338,38 @@
             if (item.archivo) {
                 const path = item.archivo.startsWith('data/') ? item.archivo : `data/${item.archivo}`;
                 fetch(path).then(r => r.json()).then(geoData => {
-                    const layer = L.geoJSON(geoData, { 
-                        style: geoStyle,
-                        // Forzamos que esta capa use el renderer global optimizado
-                        renderer: map.options.renderer 
-                    }).addTo(map);
+                    const layer = L.geoJSON(geoData, { style: geoStyle }).addTo(map);
                     
+                    // Zoom inicial general
                     map.fitBounds(layer.getBounds(), { padding: [20, 20] });
                     const center = layer.getBounds().getCenter();
                     const osmBtn = document.getElementById('btn-osm');
                     osmBtn.href = `https://www.openstreetmap.org/?mlat=${center.lat}&mlon=${center.lng}#map=17/${center.lat}/${center.lng}`;
                     osmBtn.style.display = 'flex';
+
+                    // EVENTO DE INTERACCIÓN: Click/Touch sobre el GeoJSON
+                    layer.on('click', function(e) {
+                        // 1. Centrar y hacer zoom suave a la capa tocada
+                        map.flyToBounds(e.sourceTarget.getBounds(), {
+                            padding: [40, 40],
+                            duration: 0.8 // Duración de la animación en segundos
+                        });
+
+                        // 2. Poblar la cápsula de info con los datos del JSON
+                        document.getElementById('capsule-title').textContent = item.nombre;
+                        document.getElementById('capsule-desc').textContent = item.descripcion || 'Geometría estructural del proyecto.';
+                        document.getElementById('capsule-meta').textContent = item.tamano ? `${item.tamano} | GeoJSON` : 'Capa Vectorial GeoJSON';
+                        
+                        // 3. Mostrar la cápsula
+                        document.getElementById('info-capsule').classList.add('visible');
+                    });
                 });
             }
+
+            // Ocultar cápsula si se toca el fondo del mapa (opcional pero recomendado)
+            map.on('click', function(e) {
+                document.getElementById('info-capsule').classList.remove('visible');
+            });
         }
 
         function setupCollectionSideNav(allData, currentItem) {
@@ -286,7 +392,9 @@
                 container.classList.toggle('open');
             };
             document.addEventListener('pointerdown', e => {
-                if (!container.contains(e.target)) container.classList.remove('open');
+                if (!container.contains(e.target) && !e.target.closest('.leaflet-control')) {
+                    container.classList.remove('open');
+                }
             });
         }
 
