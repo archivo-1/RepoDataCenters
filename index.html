@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,6 @@
             flex-direction: column;
         }
 
-        /* ── Header ───────────────────────────────────────── */
         header {
             padding: 1.2rem 2rem;
             border-bottom: 1px solid var(--border);
@@ -60,7 +59,6 @@
             padding: 0.45rem; font-size: 0.82rem; outline: none; cursor: pointer;
         }
 
-        /* ── Category tabs ─────────────────────────────────── */
         .filters { padding: 0.75rem 2rem 0; display: flex; gap: 0.35rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
         .filter-btn {
             display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.32rem 0.8rem; margin-bottom: 0.75rem;
@@ -71,81 +69,49 @@
         .filter-btn.active { background: var(--accent-dim); color: #93c5fd; border-color: rgba(59,130,246,0.3); }
         .tab-count { font-size: 0.65rem; font-weight: 600; background: rgba(255,255,255,0.07); color: var(--muted); padding: 0.1rem 0.42rem; border-radius: 20px; }
 
-        /* ── Main grid ─────────────────────────────────────── */
         main { flex: 1; padding: 1.75rem 2rem; max-width: 1280px; width: 100%; margin: 0 auto; }
         .grid-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
         .grid-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
 
+        /* --- Colecciones y Grupos --- */
         .collection-section { margin-bottom: 1rem; border-radius: 12px; background: rgba(255,255,255,0.02); overflow: hidden; }
-        
         .collection-header {
             width: 100%; padding: 1rem; background: var(--surface); 
             border: 1px solid var(--border); display: flex; align-items: center; 
             gap: 1rem; cursor: pointer; transition: background 0.2s;
+            user-select: none;
         }
         .collection-header:hover { background: var(--surface2); }
         .collection-header h2 { 
             font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; 
             color: var(--accent); flex: 1; display: flex; align-items: center; gap: 0.5rem;
+            pointer-events: none; /* Evita que el texto interfiera con el clic del header */
         }
-        
-        /* Flecha a la izquierda */
-        .collection-arrow { 
-            font-size: 0.6rem; transition: transform 0.3s; color: var(--muted); 
-            display: inline-block; transform: rotate(0deg); 
-        }
-        
+        .collection-arrow { font-size: 0.6rem; transition: transform 0.3s; color: var(--muted); transform: rotate(0deg); pointer-events: none; }
         .collection-content { padding: 1.15rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.15rem; }
 
-        /* Estado Colapsado */
+        /* --- Estado Colapsado (Tarjetas Compactas) --- */
         .collection-section.collapsed .collection-content { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.5rem 1rem 1rem; }
         .collection-section.collapsed .collection-arrow { transform: rotate(-90deg); }
 
-        /* ── Card ──────────────────────────────────────────── */
-        .card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-            display: flex; flex-direction: column; cursor: pointer; transition: all 0.15s;
-        }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: all 0.15s; }
         .card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         .card-thumb { width: 100%; aspect-ratio: 16/9; background: #080c14; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .thumb-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: #1e2535; }
-        .thumb-placeholder svg { width: 30px; height: 30px; stroke: currentColor; fill: none; }
         .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .card-body { padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
         .card-title { font-size: 0.88rem; font-weight: 600; color: #f1f3f5; }
-        .badge { font-size: 0.6rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 20px; text-transform: uppercase; }
-        .badge-default { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
-        
-        .card-desc {
-            font-size: 0.77rem; color: var(--muted); line-height: 1.55;
-            overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2;
-        }
+        .badge { font-size: 0.6rem; font-weight: 600; padding: 0.16rem 0.5rem; border-radius: 20px; text-transform: uppercase; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+        .card-desc { font-size: 0.77rem; color: var(--muted); line-height: 1.55; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
         .card-footer { padding: 0.65rem 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .btn-view { font-size: 0.73rem; font-weight: 500; padding: 0.3rem 0.8rem; background: var(--accent-dim); color: #93c5fd; border: 1px solid rgba(59,130,246,0.28); border-radius: 6px; cursor: pointer; }
 
-        /* Estilo para Card Compacta - Ajustado para consistencia en móvil */
-        .collapsed .card { flex-direction: row; align-items: center; height: 64px; border-color: transparent; background: transparent; gap: 0.5rem; }
+        /* Sobreescritura para vista compacta */
+        .collapsed .card { flex-direction: row; align-items: center; height: 64px; border-color: transparent; background: transparent; gap: 0.5rem; position: relative; z-index: 10; }
         .collapsed .card:hover { background: rgba(255,255,255,0.03); transform: none; box-shadow: none; }
-        
-        /* Thumbnail fijo para evitar tamaños dispares */
-        .collapsed .card-thumb { 
-            width: 56px !important; 
-            height: 42px !important; 
-            flex-shrink: 0; 
-            margin-left: 0.5rem; 
-            border-radius: 6px;
-            aspect-ratio: 4/3;
-        }
+        .collapsed .card-thumb { width: 56px !important; height: 42px !important; flex-shrink: 0; margin-left: 0.5rem; border-radius: 6px; }
         .collapsed .card-body { padding: 0 0.5rem; flex-direction: row; align-items: center; justify-content: space-between; flex: 1; gap: 0.5rem; }
         .collapsed .card-desc, .collapsed .card-footer { display: none; }
-        .collapsed .card-title { 
-            font-size: 0.78rem; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            max-width: 180px; /* Limita ancho para que no empuje el badge */
-        }
-        .collapsed .badge { font-size: 0.55rem; padding: 0.1rem 0.4rem; flex-shrink: 0; }
+        .collapsed .card-title { font-size: 0.78rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
 
         footer { padding: 2rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: #2a3040; text-align: center; }
 
@@ -167,14 +133,13 @@
     <div class="controls-wrap">
         <div class="search-wrap">
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="search" placeholder="Buscar..." autocomplete="off">
+            <input type="text" id="search" placeholder="Buscar por nombre, descripción o colección..." autocomplete="off">
         </div>
         <select id="sort-order" class="sort-select">
-            <option value="coleccion">Por colecciones</option>
-            <option value="default">Por defecto</option>
-            <option value="az">Nombre (A-Z)</option>
-            <option value="za">Nombre (Z-A)</option>
-            <option value="tipo">Por tipo</option>
+            <option value="coleccion">Agrupar por colecciones</option>
+            <option value="az">Alfabético (A-Z)</option>
+            <option value="za">Alfabético (Z-A)</option>
+            <option value="tipo">Agrupar por tipo</option>
         </select>
     </div>
 </header>
@@ -190,7 +155,7 @@
     <div id="grid"></div>
 </main>
 
-<footer>ArchVista — Archivo-1</footer>
+<footer>ArchVista — Repositorio Investigativo</footer>
 
 <script>
     let MODELS = [];
@@ -200,35 +165,22 @@
     let currentSort = 'coleccion';
 
     const nombresCategoria = {
-        'modelo-3d': 'Modelo 3D',
-        'pdf': 'PDF',
-        'video': 'Video',
-        'galeria': 'Galería',
-        'enlace': 'Enlace',
-        'audio': 'Audio',
-        'mapa': 'Mapa'
+        'modelo-3d': 'Modelo 3D', 'pdf': 'PDF', 'video': 'Video',
+        'galeria': 'Galería', 'enlace': 'Enlace', 'audio': 'Audio', 'mapa': 'Mapa'
     };
 
     fetch('content.json')
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load models');
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             MODELS = data;
             buildCategoryButtons();
             updateCounts();
             renderGrid();
-        })
-        .catch(error => {
-            console.error('Error loading models:', error);
-            document.getElementById('grid-label').textContent = 'Error loading models';
         });
 
     function buildCategoryButtons() {
         const categoriasPresentes = new Set(MODELS.map(m => m.categoria));
         const filtersDiv = document.getElementById('filters');
-        
         CATEGORIAS.forEach(cat => {
             if (categoriasPresentes.has(cat)) {
                 const btn = document.createElement('button');
@@ -243,26 +195,30 @@
     function updateCounts() {
         const allEl = document.getElementById('count-all');
         if (allEl) allEl.textContent = MODELS.length;
-        
         CATEGORIAS.forEach(cat => {
-            const n = MODELS.filter(m => m.categoria === cat).length;
             const el = document.getElementById('count-' + cat);
-            if (el) el.textContent = n;
+            if (el) el.textContent = MODELS.filter(m => m.categoria === cat).length;
         });
     }
 
-    function toggleCollection(header) {
-        const section = header.parentElement;
-        section.classList.toggle('collapsed');
+    // --- FUNCIÓN DE TOGGLE REFORZADA ---
+    function toggleCollection(headerElement) {
+        // Solo actúa sobre el padre directo .collection-section
+        headerElement.closest('.collection-section').classList.toggle('collapsed');
     }
 
     function renderGrid() {
         const gridContainer = document.getElementById('grid');
         gridContainer.innerHTML = '';
+        const isMobile = window.innerWidth <= 768;
         
         let visible = MODELS.filter(m => {
             const matchesCategory = (activeFilter === 'all' || m.categoria === activeFilter);
-            const matchesSearch = !searchQuery || (m.nombre + ' ' + (m.descripcion || '')).toLowerCase().includes(searchQuery.toLowerCase());
+            const query = searchQuery.toLowerCase();
+            const matchesSearch = !searchQuery || 
+                                 (m.nombre || '').toLowerCase().includes(query) || 
+                                 (m.descripcion || '').toLowerCase().includes(query) || 
+                                 (m.coleccion || '').toLowerCase().includes(query);
             return matchesCategory && matchesSearch;
         });
 
@@ -280,30 +236,29 @@
             return;
         }
 
-        if (currentSort === 'coleccion') {
-            const colecciones = [...new Set(visible.map(m => m.coleccion || 'Otros'))];
-            const isMobile = window.innerWidth <= 768;
+        if (currentSort === 'coleccion' || currentSort === 'tipo') {
+            const groupField = currentSort === 'coleccion' ? 'coleccion' : 'categoria';
+            const grupos = [...new Set(visible.map(m => m[groupField] || (groupField === 'coleccion' ? 'Otros' : 'General')))];
 
-            colecciones.forEach((colName) => {
+            grupos.forEach(groupName => {
                 const section = document.createElement('div');
                 section.className = 'collection-section';
-                
-                // Móvil: TODO colapsado por default. PC: desplegado.
-                if (isMobile) section.classList.add('collapsed');
+                // Si hay una búsqueda activa, no colapsamos para mostrar resultados
+                if (isMobile && !searchQuery) section.classList.add('collapsed');
+
+                const displayName = currentSort === 'tipo' ? (nombresCategoria[groupName] || groupName) : groupName;
+                const itemsInGroup = visible.filter(x => (x[groupField] || (groupField === 'coleccion' ? 'Otros' : 'General')) === groupName);
 
                 section.innerHTML = `
                     <div class="collection-header" onclick="toggleCollection(this)">
                         <span class="collection-arrow">▼</span>
-                        <h2>${colName} <span style="font-size:0.6rem; opacity:0.5; font-weight:400;">(${visible.filter(x => (x.coleccion || 'Otros') === colName).length})</span></h2>
+                        <h2>${displayName} <span style="font-size:0.6rem; opacity:0.5; font-weight:400;">(${itemsInGroup.length})</span></h2>
                     </div>
                     <div class="collection-content"></div>
                 `;
 
                 const contentDiv = section.querySelector('.collection-content');
-                visible.filter(m => (m.coleccion || 'Otros') === colName).forEach(m => {
-                    contentDiv.appendChild(createCard(m));
-                });
-
+                itemsInGroup.forEach(m => contentDiv.appendChild(createCard(m)));
                 gridContainer.appendChild(section);
             });
         } else {
@@ -317,24 +272,24 @@
     function createCard(m) {
         const card = document.createElement('div');
         card.className = 'card';
+        
+        // --- NAVEGACIÓN DIRECTA CON STOP PROPAGATION ---
         card.onclick = (e) => {
-            e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation(); // ¡CRUCIAL! Evita que el clic suba al contenedor
+            
             if (m.categoria === 'modelo-3d') window.location.href = `viewer.html?file=models/${m.archivo}`;
             else if (m.categoria === 'mapa') window.location.href = `viewer-map.html?id=${m.id}`;
             else window.location.href = `viewer-media.html?id=${m.id}`;
         };
 
-        const badgeLabel = nombresCategoria[m.categoria] || m.categoria || '';
-        const thumbContent = m.thumbnail
-            ? `<img src="${m.thumbnail}" alt="${m.nombre}" onerror="this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\'><svg viewBox=\\'0 0 24 24\\' stroke=\\'currentColor\\'><path d=\\'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\\'/></svg></div>';">`
-            : `<div class="thumb-placeholder"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>`;
-
+        const thumb = m.thumbnail ? `<img src="${m.thumbnail}" alt="">` : `<div style="color:#1e2535">📁</div>`;
         card.innerHTML = `
-            <div class="card-thumb">${thumbContent}</div>
+            <div class="card-thumb">${thumb}</div>
             <div class="card-body">
                 <div style="display:flex; justify-content:space-between; align-items:center; gap: 0.5rem; width:100%;">
                     <div class="card-title">${m.nombre}</div>
-                    <span class="badge badge-default">${badgeLabel}</span>
+                    <span class="badge">${nombresCategoria[m.categoria] || m.categoria}</span>
                 </div>
                 <div class="card-desc">${m.descripcion || 'Sin descripción'}</div>
             </div>
@@ -346,7 +301,6 @@
         return card;
     }
 
-    // Eventos
     document.getElementById('filters').onclick = (e) => {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -374,6 +328,5 @@
         }
     });
 </script>
-
 </body>
 </html>
