@@ -80,92 +80,116 @@
         /* Model title */
         #model-title { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); font-size: 0.78rem; font-weight: 500; color: #6b7280; pointer-events: none; z-index: 10; letter-spacing: 0.03em; white-space: nowrap; }
 
+        /* ── GUI: SOLAPA EXPANDIBLE (Copiado de viewer-media.html) ── */
+        .collection-nav-container { 
+            position: fixed; 
+            top: 50%; 
+            right: 0; 
+            transform: translateY(-50%);
+            z-index: 900; 
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (pointer: fine) {
+            .collection-nav-container {
+                right: 14px; 
+            }
+        }
+        
+        .coll-side-tab {
+            background: rgba(0, 0, 0, 0.9);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-right: none;
+            padding: 18px 7px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            writing-mode: vertical-rl;
+            text-transform: uppercase;
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.4);
+            user-select: none;
+            z-index: 2;
+        }
+
+        .coll-panel {
+            background: #0d1117;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+        }
+
+        .collection-nav-container.open .coll-panel {
+            width: 280px;
+            height: 65vh;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -20px 0 40px rgba(0,0,0,0.8);
+        }
+
+        .collection-nav-container.open .coll-side-tab {
+            border-radius: 0 10px 10px 0; 
+            border-left: none;
+            border-right: 1px solid rgba(59, 130, 246, 0.4);
+            order: 2; 
+        }
+
+        .coll-panel-header { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+        .coll-panel-header h2 { font-size: 0.65rem; text-transform: uppercase; color: #3b82f6; letter-spacing: 0.1em; margin: 0; }
+
+        .coll-item {
+            display: block;
+            padding: 0.9rem 1.2rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .coll-item:hover { background: rgba(59, 130, 246, 0.1); color: #fff; padding-left: 1.5rem; }
+        .coll-item.active { color: #3b82f6; background: rgba(59, 130, 246, 0.05); font-weight: 600; border-right: 3px solid #3b82f6; }
+
         /* ── Mobile responsive (≤ 600px) ──────────────────────────────── */
         @media (max-width: 600px) {
-            /* Hide desktop-only hints */
             #overlay { display: none; }
             #model-title { display: none; }
 
-            /* Back / Reset — top-right, compact */
             #back-btn  { top: 8px; right: 8px; padding: 0.3rem 0.55rem; font-size: 0.68rem; }
             #reset-btn { top: 40px; right: 8px; padding: 0.3rem 0.55rem; font-size: 0.68rem; }
 
-            /* Layers panel — top-left, compact fixed width */
-            #layers-panel {
-                top: 8px;
-                left: 8px;
-                right: auto;
-                width: 160px;
-            }
+            #layers-panel { top: 8px; left: 8px; right: auto; width: 160px; }
             #layers-body { max-height: 35vh; }
 
-            /* Hide heavy env controls on mobile */
-            /* Env controls: show as ⚙ button at bottom-right */
-            /* Env controls: show as ⚙ button at bottom-right */
-            #side-controls {
-                bottom: 88px;
-                right: 8px;
-                width: 48px;
-                height: 48px;
-                flex-direction: column;
-                gap: 0;
-                overflow: hidden;
-                transition: width 0.3s, height 0.3s;
-            }
-            /* Override desktop min-width on .panel */
-            #side-controls .panel { min-width: 0; padding: 0; }
-            /* Collapsed state: hide all content, show only icon */
-            #side-controls::before {
-                content: '⚙';
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 48px;
-                height: 48px;
-                font-size: 1.4rem;
-                color: #9ca3af;
-                flex-shrink: 0;
-            }
-            #side-controls .panel { display: none; }
-            /* Expanded state: tap/hover to reveal */
-            #side-controls:focus-within,
-            #side-controls:hover {
-                width: 200px;
-                height: auto;
-                max-height: 400px;
-            }
-            #side-controls:focus-within::before,
-            #side-controls:hover::before { display: none; }
-            #side-controls:focus-within .panel,
-            #side-controls:hover .panel { display: block; padding: 0.6rem 0.8rem; }
+            #side-controls { bottom: 88px; right: 8px; width: 48px; height: 48px; flex-direction: column; gap: 0; overflow: hidden; transition: width 0.3s, height 0.3s; }
+            #side-controls .panel { min-width: 0; padding: 0; display: none; }
+            #side-controls::before { content: '⚙'; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; font-size: 1.4rem; color: #9ca3af; flex-shrink: 0; }
+            #side-controls:focus-within, #side-controls:hover { width: 200px; height: auto; max-height: 400px; }
+            #side-controls:focus-within::before, #side-controls:hover::before { display: none; }
+            #side-controls:focus-within .panel, #side-controls:hover .panel { display: block; padding: 0.6rem 0.8rem; }
 
-            /* Style buttons — compact strip above camera buttons */
-            #style-modes {
-                bottom: 50px;
-                gap: 3px;
-            }
-            .style-btn {
-                padding: 0.22rem 0.42rem;
-                font-size: 0.63rem;
-            }
+            #style-modes { bottom: 50px; gap: 3px; }
+            .style-btn { padding: 0.22rem 0.42rem; font-size: 0.63rem; }
 
-            /* Camera buttons — full-width bar at bottom */
-            #cam-modes {
-                bottom: 6px;
-                left: 0; right: 0;
-                transform: none;
-                width: 100%;
-                padding: 0 6px;
-                gap: 4px;
-            }
-            .cam-btn {
-                padding: 0.3rem 0.4rem;
-                font-size: 0.65rem;
-                flex: 1;
-                text-align: center;
-            }
+            #cam-modes { bottom: 6px; left: 0; right: 0; transform: none; width: 100%; padding: 0 6px; gap: 4px; }
+            .cam-btn { padding: 0.3rem 0.4rem; font-size: 0.65rem; flex: 1; text-align: center; }
 
             #lock-hint { bottom: 100px; }
+
+            /* Ajustes Solapa Móvil */
+            .collection-nav-container.open .coll-panel { width: 240px; }
+            .collection-nav-container { right: 0 !important; }
         }
 
         /* ── Tablet (601–900px) ──────────────────────────────────── */
@@ -176,18 +200,16 @@
             #reset-btn { top: 44px; }
             .cam-btn   { padding: 0.32rem 0.55rem; font-size: 0.7rem; }
             .style-btn { padding: 0.24rem 0.5rem;  font-size: 0.67rem; }
-        }        }
+        }        
     </style>
 </head>
 <body>
 
-    <!-- Loading overlay -->
     <div id="loading">
         <div class="spinner"></div>
         <p>Cargando modelo...</p>
     </div>
 
-    <!-- Controls overlay (top-left) -->
     <div id="overlay">
         <h1>Controles</h1>
         <div id="orbit-controls">
@@ -217,10 +239,18 @@
         <div class="mode-indicator">Modo: <span id="mode-label">Orbita</span></div>
     </div>
 
-    <!-- Model title -->
     <div id="model-title"></div>
 
-    <!-- Layers panel (collapsible) -->
+    <div class="collection-nav-container" id="collection-nav" style="display: none;">
+        <div class="coll-side-tab" id="collTab">Colección</div>
+        <div class="coll-panel" id="collPanel">
+            <div class="coll-panel-header">
+                <h2 id="collNameLabel">Navegar</h2>
+            </div>
+            <div id="collItemList"></div>
+        </div>
+    </div>
+
     <div id="layers-panel" class="collapsed">
         <div id="layers-header" onclick="(function(){
             var p=document.getElementById('layers-panel');
@@ -234,7 +264,6 @@
         </div>
     </div>
 
-    <!-- Style switcher -->
     <div id="style-modes">
         <button class="style-btn active" data-style="rendered">Render</button>
         <button class="style-btn" data-style="clay">Arcilla</button>
@@ -242,7 +271,6 @@
         <button class="style-btn" data-style="xray">Rayos X</button>
     </div>
 
-    <!-- Camera mode buttons -->
     <div id="cam-modes">
         <button class="cam-btn active" data-mode="orbit">1 · Orbitar</button>
         <button class="cam-btn" id="ortho-toggle" onclick="toggleOrtho()">&#10697; Ortho</button>
@@ -251,7 +279,6 @@
         <button class="cam-btn" data-mode="ortho">4 · Vista superior</button>
     </div>
 
-    <!-- Side controls (bottom-right) -->
     <div id="side-controls">
         <div id="bg-controls" class="panel">
             <label>Fondo</label>
@@ -295,13 +322,71 @@
             const hint = document.getElementById('lock-hint');
             if (hint) hint.classList.toggle('visible', e.detail === 'walk' || e.detail === 'fly');
         });
-        (function() {
+
+        (async function() {
             const p = new URLSearchParams(window.location.search);
-            const m = p.get('model') || '';
-            const name = m.replace(/\.3dm$/i, '').replace(/[-_]/g, ' ');
+            const m = p.get('file') || p.get('model') || '';
+            const nameFallback = m.split('/').pop().replace(/\.3dm$/i, '').replace(/[-_]/g, ' ');
             const el = document.getElementById('model-title');
-            if (el && name) el.textContent = name;
+            if (el && nameFallback) el.textContent = nameFallback;
+
+            if (!m) return;
+
+            try {
+                const res = await fetch('content.json');
+                const data = await res.json();
+                
+                // Extraer solo el nombre del archivo para comparar contra el JSON de forma segura
+                const targetFile = decodeURIComponent(m).split('/').pop().trim().toLowerCase();
+                
+                const currentItem = data.find(item => {
+                    if (!item.archivo) return false;
+                    const jsonFile = decodeURIComponent(item.archivo).split('/').pop().trim().toLowerCase();
+                    return jsonFile === targetFile;
+                });
+
+                if (currentItem) {
+                    if (el) el.textContent = currentItem.nombre; // Usamos el nombre limpio del JSON
+                    setupCollectionSideNav(data, currentItem);
+                }
+            } catch (err) {
+                console.warn("Error cargando colección:", err);
+            }
         })();
+
+        function setupCollectionSideNav(allData, currentItem) {
+            const collName = currentItem.coleccion;
+            if (!collName) return;
+
+            const siblings = allData.filter(i => i.coleccion === collName);
+            if (siblings.length <= 1) return;
+
+            const container = document.getElementById('collection-nav');
+            container.style.display = 'flex';
+            document.getElementById('collNameLabel').textContent = collName;
+
+            const itemList = document.getElementById('collItemList');
+            itemList.innerHTML = siblings.map(i => {
+                let url = "";
+                // Respetando estrictamente cómo se formatea en viewer-map.html y viewer-media.html
+                if (i.categoria === 'modelo-3d') url = `viewer.html?file=models/${i.archivo}`;
+                else if (i.categoria === 'mapa') url = `viewer-map.html?id=${i.id}`;
+                else url = `viewer-media.html?id=${i.id}`;
+                return `<a href="${url}" class="coll-item ${i.id === currentItem.id ? 'active' : ''}">${i.nombre}</a>`;
+            }).join('');
+
+            const tab = document.getElementById('collTab');
+            tab.addEventListener('click', (e) => {
+                e.stopPropagation();
+                container.classList.toggle('open');
+            });
+
+            document.addEventListener('pointerdown', (e) => {
+                if (!container.contains(e.target) && container.classList.contains('open')) {
+                    container.classList.remove('open');
+                }
+            });
+        }
     </script>
 </body>
 </html>
