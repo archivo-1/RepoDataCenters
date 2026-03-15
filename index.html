@@ -54,7 +54,6 @@
             width: 14px; height: 14px; stroke: var(--muted); fill: none; pointer-events: none;
         }
 
-        /* Estilo para el Selector de Orden */
         .sort-select {
             flex: 1; background: var(--surface); color: var(--text);
             border: 1px solid var(--border); border-radius: 8px;
@@ -76,22 +75,31 @@
         main { flex: 1; padding: 1.75rem 2rem; max-width: 1280px; width: 100%; margin: 0 auto; }
         .grid-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
         .grid-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.15rem; }
 
-        /* CSS para los títulos de colecciones */
-        .collection-separator {
-            grid-column: 1 / -1;
-            margin: 1.5rem 0 0.5rem 0;
-            padding-top: 1rem;
+        .collection-section { margin-bottom: 1rem; border-radius: 12px; background: rgba(255,255,255,0.02); overflow: hidden; }
+        
+        .collection-header {
+            width: 100%; padding: 1rem; background: var(--surface); 
+            border: 1px solid var(--border); display: flex; align-items: center; 
+            gap: 1rem; cursor: pointer; transition: background 0.2s;
         }
-        .collection-separator h2 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
+        .collection-header:hover { background: var(--surface2); }
+        .collection-header h2 { 
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; 
+            color: var(--accent); flex: 1; display: flex; align-items: center; gap: 0.5rem;
         }
-        .collection-separator hr { border: none; border-top: 1px solid var(--border); }
+        
+        /* Flecha a la izquierda */
+        .collection-arrow { 
+            font-size: 0.6rem; transition: transform 0.3s; color: var(--muted); 
+            display: inline-block; transform: rotate(0deg); 
+        }
+        
+        .collection-content { padding: 1.15rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.15rem; }
+
+        /* Estado Colapsado */
+        .collection-section.collapsed .collection-content { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.5rem 1rem 1rem; }
+        .collection-section.collapsed .collection-arrow { transform: rotate(-90deg); }
 
         /* ── Card ──────────────────────────────────────────── */
         .card {
@@ -101,7 +109,7 @@
         .card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         .card-thumb { width: 100%; aspect-ratio: 16/9; background: #080c14; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .thumb-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: #1e2535; }
-        .thumb-placeholder svg { width: 40px; height: 40px; stroke: currentColor; fill: none; }
+        .thumb-placeholder svg { width: 30px; height: 30px; stroke: currentColor; fill: none; }
         .card-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .card-body { padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
         .card-title { font-size: 0.88rem; font-weight: 600; color: #f1f3f5; }
@@ -109,19 +117,44 @@
         .badge-default { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
         
         .card-desc {
-            font-size: 0.77rem;
-            color: var(--muted);
-            line-height: 1.55;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
+            font-size: 0.77rem; color: var(--muted); line-height: 1.55;
+            overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2;
         }
         .card-footer { padding: 0.65rem 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .btn-view { font-size: 0.73rem; font-weight: 500; padding: 0.3rem 0.8rem; background: var(--accent-dim); color: #93c5fd; border: 1px solid rgba(59,130,246,0.28); border-radius: 6px; cursor: pointer; }
 
+        /* Estilo para Card Compacta - Ajustado para consistencia en móvil */
+        .collapsed .card { flex-direction: row; align-items: center; height: 64px; border-color: transparent; background: transparent; gap: 0.5rem; }
+        .collapsed .card:hover { background: rgba(255,255,255,0.03); transform: none; box-shadow: none; }
+        
+        /* Thumbnail fijo para evitar tamaños dispares */
+        .collapsed .card-thumb { 
+            width: 56px !important; 
+            height: 42px !important; 
+            flex-shrink: 0; 
+            margin-left: 0.5rem; 
+            border-radius: 6px;
+            aspect-ratio: 4/3;
+        }
+        .collapsed .card-body { padding: 0 0.5rem; flex-direction: row; align-items: center; justify-content: space-between; flex: 1; gap: 0.5rem; }
+        .collapsed .card-desc, .collapsed .card-footer { display: none; }
+        .collapsed .card-title { 
+            font-size: 0.78rem; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            max-width: 180px; /* Limita ancho para que no empuje el badge */
+        }
+        .collapsed .badge { font-size: 0.55rem; padding: 0.1rem 0.4rem; flex-shrink: 0; }
+
         footer { padding: 2rem; border-top: 1px solid var(--border); font-size: 0.7rem; color: #2a3040; text-align: center; }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            main { padding: 0.75rem; }
+            .collection-content { padding: 0.5rem; }
+            .collapsed .card-title { max-width: 140px; }
+        }
     </style>
 </head>
 <body>
@@ -142,7 +175,6 @@
             <option value="az">Nombre (A-Z)</option>
             <option value="za">Nombre (Z-A)</option>
             <option value="tipo">Por tipo</option>
-            
         </select>
     </div>
 </header>
@@ -151,18 +183,18 @@
     <button class="filter-btn active" data-cat="all">Todo <span class="tab-count" id="count-all">0</span></button>
 </div>
 
-<main>
+<main id="main-container">
     <div class="grid-header">
         <span class="grid-label" id="grid-label">Cargando ...</span>
     </div>
-    <div class="grid" id="grid"></div>
+    <div id="grid"></div>
 </main>
 
 <footer>ArchVista — Archivo-1</footer>
 
 <script>
     let MODELS = [];
-    const CATEGORIAS = ['modelo-3d', 'pdf', 'video', 'galeria', 'enlace', 'audio'];
+    const CATEGORIAS = ['modelo-3d', 'pdf', 'video', 'galeria', 'enlace', 'audio','mapa'];
     let activeFilter = 'all';
     let searchQuery = '';
     let currentSort = 'coleccion';
@@ -173,7 +205,8 @@
         'video': 'Video',
         'galeria': 'Galería',
         'enlace': 'Enlace',
-        'audio': 'Audio'
+        'audio': 'Audio',
+        'mapa': 'Mapa'
     };
 
     fetch('content.json')
@@ -218,8 +251,14 @@
         });
     }
 
+    function toggleCollection(header) {
+        const section = header.parentElement;
+        section.classList.toggle('collapsed');
+    }
+
     function renderGrid() {
-        const grid = document.getElementById('grid');
+        const gridContainer = document.getElementById('grid');
+        gridContainer.innerHTML = '';
         
         let visible = MODELS.filter(m => {
             const matchesCategory = (activeFilter === 'all' || m.categoria === activeFilter);
@@ -227,71 +266,87 @@
             return matchesCategory && matchesSearch;
         });
 
-        if (currentSort === 'az') {
-            visible.sort((a, b) => a.nombre.localeCompare(b.nombre));
-        } else if (currentSort === 'za') {
-            visible.sort((a, b) => b.nombre.localeCompare(a.nombre));
-        } else if (currentSort === 'tipo') {
-            visible.sort((a, b) => (a.categoria || '').localeCompare(b.categoria || ''));
-        } else if (currentSort === 'coleccion') {
+        if (currentSort === 'az') visible.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        else if (currentSort === 'za') visible.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        else if (currentSort === 'tipo') visible.sort((a, b) => (a.categoria || '').localeCompare(b.categoria || ''));
+        else if (currentSort === 'coleccion') {
             visible.sort((a, b) => (a.coleccion || 'Otros').localeCompare(b.coleccion || 'Otros') || a.nombre.localeCompare(b.nombre));
         }
 
         document.getElementById('grid-label').textContent = visible.length + ' item' + (visible.length !== 1 ? 's' : '');
-        grid.innerHTML = '';
         
         if (visible.length === 0) {
-            grid.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem; grid-column: 1/-1;">No se encontraron elementos</p>';
+            gridContainer.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem;">No se encontraron elementos</p>';
             return;
         }
 
-        let lastCol = null;
+        if (currentSort === 'coleccion') {
+            const colecciones = [...new Set(visible.map(m => m.coleccion || 'Otros'))];
+            const isMobile = window.innerWidth <= 768;
 
-        visible.forEach(m => {
-            if (currentSort === 'coleccion') {
-                const currentCol = m.coleccion || 'Otros';
-                if (currentCol !== lastCol) {
-                    const sep = document.createElement('div');
-                    sep.className = 'collection-separator';
-                    sep.innerHTML = `<h2>${currentCol}</h2><hr>`;
-                    grid.appendChild(sep);
-                    lastCol = currentCol;
-                }
-            }
+            colecciones.forEach((colName) => {
+                const section = document.createElement('div');
+                section.className = 'collection-section';
+                
+                // Móvil: TODO colapsado por default. PC: desplegado.
+                if (isMobile) section.classList.add('collapsed');
 
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.onclick = () => {
-                if (m.categoria === 'modelo-3d') {
-                    window.location.href = `viewer.html?file=models/${m.archivo}`;
-                } else {
-                    window.location.href = `viewer-media.html?id=${m.id}`;
-                }
-            };
-
-            const badgeLabel = nombresCategoria[m.categoria] || m.categoria || '';
-            const thumbContent = m.thumbnail
-                ? `<img src="${m.thumbnail}" alt="${m.nombre}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\'><svg viewBox=\\'0 0 24 24\\' stroke=\\'currentColor\\'><path d=\\'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\\'/></svg><span>${badgeLabel}</span></div>';">`
-                : `<div class="thumb-placeholder"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>${badgeLabel}</span></div>`;
-
-            card.innerHTML = `
-                <div class="card-thumb">${thumbContent}</div>
-                <div class="card-body">
-                    <div style="display:flex; justify-content:space-between; align-items:start; gap: 0.5rem;">
-                        <div class="card-title">${m.nombre}</div>
-                        <span class="badge badge-default">${badgeLabel}</span>
+                section.innerHTML = `
+                    <div class="collection-header" onclick="toggleCollection(this)">
+                        <span class="collection-arrow">▼</span>
+                        <h2>${colName} <span style="font-size:0.6rem; opacity:0.5; font-weight:400;">(${visible.filter(x => (x.coleccion || 'Otros') === colName).length})</span></h2>
                     </div>
-                    <div class="card-desc">${m.descripcion || 'Sin descripción'}</div>
-                </div>
-                <div class="card-footer">
-                    <span style="font-size:0.65rem; color:#4b5563">${m.tamano || ''}</span>
-                    <button class="btn-view">Abrir</button>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
+                    <div class="collection-content"></div>
+                `;
+
+                const contentDiv = section.querySelector('.collection-content');
+                visible.filter(m => (m.coleccion || 'Otros') === colName).forEach(m => {
+                    contentDiv.appendChild(createCard(m));
+                });
+
+                gridContainer.appendChild(section);
+            });
+        } else {
+            const standardGrid = document.createElement('div');
+            standardGrid.className = 'collection-content';
+            visible.forEach(m => standardGrid.appendChild(createCard(m)));
+            gridContainer.appendChild(standardGrid);
+        }
     }
 
+    function createCard(m) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.onclick = (e) => {
+            e.stopPropagation();
+            if (m.categoria === 'modelo-3d') window.location.href = `viewer.html?file=models/${m.archivo}`;
+            else if (m.categoria === 'mapa') window.location.href = `viewer-map.html?id=${m.id}`;
+            else window.location.href = `viewer-media.html?id=${m.id}`;
+        };
+
+        const badgeLabel = nombresCategoria[m.categoria] || m.categoria || '';
+        const thumbContent = m.thumbnail
+            ? `<img src="${m.thumbnail}" alt="${m.nombre}" onerror="this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\'><svg viewBox=\\'0 0 24 24\\' stroke=\\'currentColor\\'><path d=\\'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\\'/></svg></div>';">`
+            : `<div class="thumb-placeholder"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>`;
+
+        card.innerHTML = `
+            <div class="card-thumb">${thumbContent}</div>
+            <div class="card-body">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap: 0.5rem; width:100%;">
+                    <div class="card-title">${m.nombre}</div>
+                    <span class="badge badge-default">${badgeLabel}</span>
+                </div>
+                <div class="card-desc">${m.descripcion || 'Sin descripción'}</div>
+            </div>
+            <div class="card-footer">
+                <span style="font-size:0.65rem; color:#4b5563">${m.tamano || ''}</span>
+                <button class="btn-view">Abrir</button>
+            </div>
+        `;
+        return card;
+    }
+
+    // Eventos
     document.getElementById('filters').onclick = (e) => {
         const btn = e.target.closest('.filter-btn');
         if (!btn) return;
@@ -309,6 +364,14 @@
     document.getElementById('sort-order').addEventListener('change', (e) => {
         currentSort = e.target.value;
         renderGrid();
+    });
+
+    window.addEventListener('resize', () => {
+        const isMobile = window.innerWidth <= 768;
+        if (window.lastIsMobile !== isMobile) {
+            renderGrid();
+            window.lastIsMobile = isMobile;
+        }
     });
 </script>
 
