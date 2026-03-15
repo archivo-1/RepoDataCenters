@@ -33,7 +33,6 @@
             user-select: none;
         }
         
-        /* Título con elipsis si es muy largo */
         #map-title {
             flex: 1;
             font-size: 0.85rem;
@@ -59,11 +58,9 @@
         }
         .btn-header:hover { color: #fff; background: rgba(255,255,255,0.05); border-color: #00f2ff; }
 
-        /* Ajustes para pantallas pequeñas */
         @media (max-width: 480px) {
-            .btn-back-text { display: none; } /* Oculta "Volver" */
-            .btn-osm-text { display: none; }
-            .btn-osm-short { display: inline !important; } /* Muestra "OSM" */
+            .btn-back-text, .btn-osm-text { display: none; }
+            .btn-osm-short { display: inline !important; }
             header { padding: 0 0.5rem; }
         }
 
@@ -73,7 +70,6 @@
 
         #map { flex: 1; background: #050608; position: relative; touch-action: auto; }
         
-        /* GUI: SOLAPA EXPANDIBLE */
         .collection-nav-container { 
             position: fixed; 
             top: 50%; 
@@ -141,7 +137,6 @@
         .coll-item:hover { background: rgba(0, 242, 255, 0.1); color: #fff; }
         .coll-item.active { color: #00f2ff; background: rgba(0, 242, 255, 0.05); border-right: 3px solid #00f2ff; }
 
-        /* BRÚJULA */
         .compass-container {
             position: absolute;
             top: 20px;
@@ -167,7 +162,16 @@
         }
         .compass-label { font-size: 9px; font-weight: bold; color: #fff; }
 
-        .leaflet-control-scale { margin-bottom: 25px !important; }
+        /* Estilos para controles de Leaflet */
+        .leaflet-control-scale { margin-bottom: 25px !important; margin-left: 15px !important; }
+        .leaflet-control-scale-line { 
+            background: rgba(13, 17, 23, 0.8) !important; 
+            color: #00f2ff !important; 
+            border: 1px solid #00f2ff !important; 
+            border-top: none !important;
+            font-size: 11px !important;
+            text-shadow: none !important;
+        }
     </style>
 </head>
 <body>
@@ -216,25 +220,29 @@
             document.getElementById('map-title').textContent = item.nombre;
             setupCollectionSideNav(data, item);
 
-            // Forzar renderizado por Canvas para suavidad en móviles
+            // Capas base
+            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
+            const light = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
+            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OSM' });
+
             const map = L.map('map', {
                 center: [item.lat || -33.04, item.lon || -71.61],
                 zoom: item.zoom || 13,
+                layers: [dark],
                 rotate: true,
                 touchRotate: true,
-                zoomAnimation: true,
-                fadeAnimation: true,
-                markerZoomAnimation: true,
-                renderer: L.canvas() // Mejor rendimiento para GeoJSON
+                renderer: L.canvas() // Rendimiento optimizado
             });
 
-            const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { 
-                attribution: '&copy; CARTO',
-                updateWhenZooming: false,
-                updateWhenIdle: true
-            }).addTo(map);
+            // Re-instanciar controles eliminados
+            L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
+            L.control.scale({ metric: true, imperial: false, position: 'bottomleft' }).addTo(map);
 
-            const osmBtn = document.getElementById('btn-osm');
+            const needle = document.getElementById('compass-needle');
+            map.on('rotate', () => {
+                needle.style.transform = `rotate(${-map.getBearing()}deg)`;
+            });
+
             const geoStyle = { color: "#00f2ff", weight: 3, opacity: 0.8, fillColor: "#00f2ff", fillOpacity: 0.15 };
             
             if (item.archivo) {
@@ -243,15 +251,11 @@
                     const layer = L.geoJSON(geoData, { style: geoStyle }).addTo(map);
                     map.fitBounds(layer.getBounds(), { padding: [20, 20] });
                     const center = layer.getBounds().getCenter();
+                    const osmBtn = document.getElementById('btn-osm');
                     osmBtn.href = `https://www.openstreetmap.org/?mlat=${center.lat}&mlon=${center.lng}#map=17/${center.lat}/${center.lng}`;
                     osmBtn.style.display = 'flex';
                 });
             }
-
-            const needle = document.getElementById('compass-needle');
-            map.on('rotate', () => {
-                needle.style.transform = `rotate(${-map.getBearing()}deg)`;
-            });
         }
 
         function setupCollectionSideNav(allData, currentItem) {
