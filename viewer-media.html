@@ -2,11 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ArchVista - Visor Multimedia</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <style>
-        :root { --accent: #00f2ff; --bg: #050608; --panel: #0d1117; }
+        :root { --accent: #00f2ff; --bg: #050608; --panel: #0d1117; --header-h: 52px; }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -17,127 +18,123 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            /* Permitimos pan (scroll) pero no zoom nativo del sistema */
-            touch-action: pan-x pan-y; 
+            touch-action: none; /* Bloqueamos gestos nativos en el body para controlarlos nosotros */
         }
 
-        /* ── HEADER FIXED ── */
+        /* ── UI CAPA FIJA (No escala) ── */
         header {
-            height: 52px;
+            height: var(--header-h);
+            min-height: var(--header-h);
             padding: 0 1rem;
             background: var(--panel);
             border-bottom: 1px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 1000;
-            user-select: none;
+            z-index: 2000;
+            position: relative;
         }
 
         .nav-group { display: flex; align-items: center; gap: 0.8rem; }
-        
         .btn-action {
             color: #9ca3af;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 12px;
             background: rgba(255,255,255,0.03);
             padding: 6px 12px;
             border-radius: 4px;
             border: 1px solid rgba(255,255,255,0.15);
             transition: all 0.2s;
-            font-weight: 500;
+            white-space: nowrap;
         }
-        .btn-action:hover { color: var(--accent); border-color: var(--accent); background: rgba(0, 242, 255, 0.05); }
+        .btn-action:hover { color: var(--accent); border-color: var(--accent); }
 
-        h1 { font-size: 0.85rem; font-weight: 500; color: #fff; max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        h1 { font-size: 14px; font-weight: 500; color: #fff; max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* ── NAVEGACIÓN LATERAL (COLECCIÓN) ── */
-        .collection-nav-container { 
-            position: fixed; top: 50%; right: 0; transform: translateY(-50%);
-            z-index: 1100; display: flex; align-items: center;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @media (pointer: fine) { .collection-nav-container { right: 12px; } }
-        
-        .coll-side-tab {
-            background: rgba(0, 0, 0, 0.95);
-            color: var(--accent);
-            border: 1px solid rgba(0, 242, 255, 0.4);
-            border-right: none;
-            padding: 20px 8px;
-            border-radius: 10px 0 0 10px;
-            cursor: pointer;
-            writing-mode: vertical-rl;
-            text-transform: uppercase;
-            font-size: 0.6rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            box-shadow: -5px 0 20px rgba(0,0,0,0.5);
-        }
-
-        .coll-panel {
-            background: var(--panel);
-            width: 0; height: 0; overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .collection-nav-container.open .coll-panel {
-            width: 260px; height: 65vh;
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-right: none;
-            border-radius: 10px 0 0 10px;
-            box-shadow: -20px 0 40px rgba(0,0,0,0.8);
-            overflow-y: auto;
-        }
-
-        .coll-item {
-            display: block; padding: 1rem; color: #9ca3af;
-            text-decoration: none; font-size: 0.75rem;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-        .coll-item.active { color: var(--accent); background: rgba(0, 242, 255, 0.05); border-right: 3px solid var(--accent); }
-
-        /* ── VISOR PRINCIPAL ── */
+        /* ── VISOR INDEPENDIENTE ── */
         #main-viewer { 
-            flex: 1; width: 100%; position: relative; 
-            overflow: auto; background: var(--bg);
+            flex: 1;
+            width: 100%;
+            position: relative;
+            overflow: auto; /* Solo el contenido hace scroll */
+            background: var(--bg);
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-x pan-y; /* Permitimos scroll táctil aquí */
         }
         
         #content-wrapper { 
-            width: 100%; height: 100%; 
-            display: flex; justify-content: center; align-items: flex-start;
+            width: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Ajustes específicos por tipo */
-        #pdf-render-container { padding: 2rem 1rem; display: flex; flex-direction: column; align-items: center; }
-        .pdf-page { margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 100%; }
-
-        video { 
-            width: 100%; max-height: 100%; outline: none; 
-            touch-action: auto; /* IMPORTANTE: Permite interactuar con controles nativos */
+        /* ── PDF: FIX DISTORSIÓN ── */
+        #pdf-render-container { 
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
+        .pdf-page { 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: block;
+            /* Eliminamos max-width: 100% para evitar que el CSS fuerce un ancho distinto al renderizado */
+        }
+
+        /* ── VIDEO & METADATA ── */
+        .video-container { width: 100%; max-width: 1000px; padding: 1rem; }
+        video { width: 100%; background: #000; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
         
-        iframe { width: 100%; height: 100%; border: none; background: #fff; touch-action: auto; }
-        img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .metadata-card {
+            margin-top: 1.5rem;
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        .metadata-card h2 { font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .metadata-card p { font-size: 0.85rem; line-height: 1.5; color: #9ca3af; }
+        .metadata-tag { 
+            display: inline-block; margin-top: 1rem; font-size: 11px; 
+            padding: 3px 8px; background: rgba(0,242,255,0.1); 
+            color: var(--accent); border-radius: 4px; border: 1px solid rgba(0,242,255,0.2);
+        }
 
-        /* ── CONTROLES ZOOM (Solo PDF) ── */
+        /* ── CONTROLES FIJOS ── */
+        .collection-nav-container { 
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%);
+            z-index: 1100; display: flex; align-items: center;
+        }
+        .coll-side-tab {
+            background: #000; color: var(--accent); border: 1px solid var(--accent); border-right: none;
+            padding: 20px 6px; border-radius: 8px 0 0 8px; cursor: pointer;
+            writing-mode: vertical-rl; text-transform: uppercase; font-size: 10px; font-weight: 800;
+        }
+        .coll-panel { background: var(--panel); width: 0; overflow: hidden; transition: width 0.3s ease; }
+        .collection-nav-container.open .coll-panel { width: 260px; height: 60vh; border: 1px solid var(--accent); border-right: none; overflow-y: auto; }
+        .coll-item { display: block; padding: 12px; color: #9ca3af; text-decoration: none; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .coll-item.active { color: var(--accent); background: rgba(0,242,255,0.05); }
+
         #zoom-controls { 
-            position: fixed; bottom: 2rem; left: 1.5rem; 
-            display: none; flex-direction: column; gap: 0.8rem; z-index: 1000; 
+            position: fixed; bottom: 30px; left: 20px; 
+            display: none; flex-direction: column; gap: 12px; z-index: 1500; 
         }
         .zoom-btn { 
-            width: 50px; height: 50px; border-radius: 50%; 
+            width: 48px; height: 48px; border-radius: 50%; 
             background: rgba(13, 17, 23, 0.9); border: 1px solid var(--accent); 
-            color: var(--accent); font-size: 1.5rem; cursor: pointer; 
+            color: var(--accent); font-size: 20px; cursor: pointer; 
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            backdrop-filter: blur(8px);
         }
 
+        iframe { width: 100%; height: calc(100vh - var(--header-h)); border: none; }
+
         @media (max-width: 600px) {
-            h1 { max-width: 140px; font-size: 0.75rem; }
-            #pdf-render-container { padding: 1rem 0.5rem; }
+            h1 { max-width: 130px; }
+            .metadata-card { margin: 1rem; }
         }
     </style>
 </head>
@@ -151,6 +148,10 @@
         <div id="toolbar-actions" class="nav-group"></div>
     </header>
 
+    <div id="main-viewer">
+        <div id="content-wrapper"></div>
+    </div>
+
     <div class="collection-nav-container" id="collection-nav" style="display: none;">
         <div class="coll-side-tab" id="collTab">Colección</div>
         <div class="coll-panel" id="collPanel">
@@ -158,13 +159,9 @@
         </div>
     </div>
 
-    <div id="main-viewer">
-        <div id="content-wrapper"></div>
-    </div>
-
     <div id="zoom-controls">
-        <button class="zoom-btn" id="zoomInBtn">+</button>
-        <button class="zoom-btn" id="zoomOutBtn">−</button>
+        <button class="zoom-btn" id="zoomInBtn" title="Aumentar">+</button>
+        <button class="zoom-btn" id="zoomOutBtn" title="Reducir">−</button>
     </div>
 
     <script>
@@ -172,31 +169,11 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
 
         let currentPdf = null;
-        let pdfScale = 1.2;
+        let pdfScale = 1.0;
         let isRendering = false;
         const viewer = document.getElementById('main-viewer');
         const params = new URLSearchParams(window.location.search);
         const itemId = params.get('id');
-
-        // ── GESTIÓN DE ZOOM TÁCTIL (PINCH) ──
-        let initialDist = 0;
-        viewer.addEventListener('touchstart', e => {
-            if (e.touches.length === 2 && currentPdf) {
-                initialDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
-            }
-        }, { passive: true });
-
-        viewer.addEventListener('touchmove', e => {
-            if (e.touches.length === 2 && currentPdf && initialDist > 0) {
-                const currentDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
-                const diff = currentDist / initialDist;
-                
-                if (Math.abs(diff - 1) > 0.15) { // Sensibilidad
-                    changeZoom(diff > 1 ? 0.2 : -0.2);
-                    initialDist = currentDist;
-                }
-            }
-        }, { passive: true });
 
         async function loadContent() {
             try {
@@ -206,68 +183,78 @@
 
                 if (!item) throw new Error('Archivo no encontrado');
                 document.getElementById('item-title').textContent = item.nombre;
-                
                 setupCollectionSideNav(items, item);
 
                 const wrapper = document.getElementById('content-wrapper');
                 const toolbar = document.getElementById('toolbar-actions');
                 const ext = item.archivo.split('.').pop().toLowerCase();
 
+                // Acción por defecto: Descargar
                 toolbar.innerHTML = `<a href="${item.archivo}" download class="btn-action">Descargar</a>`;
 
                 if (item.categoria === 'pdf' || ext === 'pdf') {
                     document.getElementById('zoom-controls').style.display = 'flex';
                     wrapper.innerHTML = '<div id="pdf-render-container"></div>';
                     initPDF(item.archivo);
-                } else if (item.categoria === 'video') {
-                    //playsinline y controls para asegurar visibilidad en móviles
-                    wrapper.innerHTML = `<video controls playsinline autoplay src="${item.archivo}"></video>`;
-                } else if (item.categoria === 'enlace') {
+                } 
+                else if (item.categoria === 'video') {
+                    wrapper.innerHTML = `
+                        <div class="video-container">
+                            <video controls playsinline autoplay src="${item.archivo}"></video>
+                            <div class="metadata-card">
+                                <h2>Descripción del recurso</h2>
+                                <p>${item.descripcion || 'Sin descripción disponible.'}</p>
+                                <div class="metadata-tag">${item.tamano || '--'} | MP4 Video</div>
+                            </div>
+                        </div>`;
+                } 
+                else if (item.categoria === 'enlace') {
                     toolbar.innerHTML = `<button class="btn-action" onclick="window.open('${item.archivo}', '_blank')">Abrir en pestaña ↗</button>`;
                     wrapper.innerHTML = `<iframe src="${item.archivo}" allowfullscreen></iframe>`;
-                } else if (['jpg','png','webp'].includes(ext)) {
-                    wrapper.innerHTML = `<img src="${item.archivo}">`;
-                } else {
-                    wrapper.innerHTML = `<iframe src="${item.archivo}"></iframe>`;
+                } 
+                else if (['jpg','png','webp','jpeg'].includes(ext)) {
+                    wrapper.innerHTML = `<img src="${item.archivo}" style="max-width:100%; margin:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">`;
                 }
             } catch (err) {
-                document.getElementById('content-wrapper').innerHTML = `<p style="padding:2rem;">${err.message}</p>`;
+                document.getElementById('content-wrapper').innerHTML = `<p style="padding:2rem;">Error: ${err.message}</p>`;
             }
         }
 
-        // ── LÓGICA PDF ──
         async function initPDF(url) {
             const loadingTask = pdfjsLib.getDocument(url);
             currentPdf = await loadingTask.promise;
             
-            // Ajuste de escala inicial según dispositivo
+            // Escala inicial automática para llenar el ancho
             const firstPage = await currentPdf.getPage(1);
             const viewport = firstPage.getViewport({ scale: 1 });
-            const containerWidth = viewer.clientWidth - 40;
-            pdfScale = containerWidth / viewport.width;
-            if (pdfScale > 1.4) pdfScale = 1.4; // No exceder en desktop
+            pdfScale = (viewer.clientWidth - 60) / viewport.width;
+            if (pdfScale > 1.3) pdfScale = 1.3;
 
             renderAllPages();
         }
 
         async function renderAllPages() {
-            if (isRendering) return;
+            if (isRendering || !currentPdf) return;
             isRendering = true;
+            
             const container = document.getElementById('pdf-render-container');
             container.innerHTML = ''; 
             
             for (let pageNum = 1; pageNum <= currentPdf.numPages; pageNum++) {
                 const page = await currentPdf.getPage(pageNum);
                 const viewport = page.getViewport({ scale: pdfScale });
+                
                 const canvas = document.createElement('canvas');
                 canvas.className = 'pdf-page';
                 const context = canvas.getContext('2d');
                 
                 const dpr = window.devicePixelRatio || 1;
-                canvas.width = viewport.width * dpr;
-                canvas.height = viewport.height * dpr;
-                canvas.style.width = viewport.width + "px";
-                canvas.style.height = viewport.height + "px";
+                // Ajustamos resolución interna
+                canvas.width = Math.floor(viewport.width * dpr);
+                canvas.height = Math.floor(viewport.height * dpr);
+                // Ajustamos tamaño visual exacto para evitar distorsión de eje
+                canvas.style.width = Math.floor(viewport.width) + "px";
+                canvas.style.height = Math.floor(viewport.height) + "px";
                 
                 context.scale(dpr, dpr);
                 await page.render({ canvasContext: context, viewport: viewport }).promise;
@@ -276,20 +263,22 @@
             isRendering = false;
         }
 
-        let zoomTimeout;
         function changeZoom(delta) {
             const newScale = pdfScale + delta;
-            if (newScale >= 0.3 && newScale <= 4.0) {
+            if (newScale >= 0.4 && newScale <= 3.0) {
                 pdfScale = newScale;
-                clearTimeout(zoomTimeout);
-                zoomTimeout = setTimeout(renderAllPages, 100);
+                renderAllPages();
             }
         }
 
-        document.getElementById('zoomInBtn').onclick = () => changeZoom(0.3);
-        document.getElementById('zoomOutBtn').onclick = () => changeZoom(-0.3);
+        document.getElementById('zoomInBtn').onclick = () => changeZoom(0.2);
+        document.getElementById('zoomOutBtn').onclick = () => changeZoom(-0.2);
 
-        // ── SIDE NAV ──
+        // Bloqueo de zoom por gesto de pinza nativo para evitar que la UI se deforme
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) e.preventDefault();
+        }, { passive: false });
+
         function setupCollectionSideNav(allData, currentItem) {
             const collName = currentItem.coleccion;
             if (!collName) return;
@@ -298,8 +287,8 @@
 
             const container = document.getElementById('collection-nav');
             container.style.display = 'flex';
-
             const itemList = document.getElementById('collItemList');
+            
             itemList.innerHTML = siblings.map(i => {
                 let url = i.categoria === 'modelo-3d' ? `viewer.html?file=models/${i.archivo}` : 
                           (i.categoria === 'mapa' ? `viewer-map.html?id=${i.id}` : `viewer-media.html?id=${i.id}`);
