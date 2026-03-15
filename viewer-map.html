@@ -2,14 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ArchVista - Visor Cartográfico</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #050608; color: #e5e7eb; font-family: system-ui, sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
         
-        header { height: 52px; padding: 0 1.2rem; background: #0d1117; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; z-index: 1000; }
+        /* Cambio: touch-action: none evita que el navegador use gestos táctiles para zoom en el body */
+        body { 
+            background: #050608; 
+            color: #e5e7eb; 
+            font-family: system-ui, sans-serif; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden;
+            touch-action: none; 
+        }
+        
+        header { 
+            height: 52px; 
+            padding: 0 1.2rem; 
+            background: #0d1117; 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            z-index: 1000;
+            /* Evita gestos de zoom en la cabecera */
+            touch-action: none;
+            user-select: none;
+        }
         
         .btn-header { 
             color: #9ca3af; 
@@ -24,7 +47,8 @@
         }
         .btn-header:hover { color: #fff; background: rgba(255,255,255,0.05); border-color: #00f2ff; }
 
-        #map { flex: 1; background: #050608; position: relative; }
+        /* El mapa sí debe permitir gestos (Leaflet los gestionará) */
+        #map { flex: 1; background: #050608; position: relative; touch-action: auto; }
         
         /* ── GUI: SOLAPA EXPANDIBLE ── */
         .collection-nav-container { 
@@ -32,10 +56,12 @@
             top: 50%; 
             right: 0; 
             transform: translateY(-50%);
-            z-index: 1100; /* Por encima de los controles de Leaflet */
+            z-index: 1100;
             display: flex;
             align-items: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Bloquea zoom en la solapa */
+            touch-action: none;
         }
 
         @media (pointer: fine) {
@@ -77,6 +103,8 @@
             border-right: none;
             border-radius: 10px 0 0 10px;
             box-shadow: -20px 0 40px rgba(0,0,0,0.8);
+            /* Permite scroll en la lista de items pero no zoom */
+            overflow-y: auto;
         }
 
         .collection-nav-container.open .coll-side-tab {
@@ -120,6 +148,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            touch-action: none;
         }
 
         .compass-arrow {
@@ -149,7 +178,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="ui-header">
         <a href="index.html" class="btn-header">← Volver</a>
         <div id="map-title" style="font-size: 0.9rem; font-weight: 500;">Cargando infraestructura...</div>
         <a id="btn-osm" href="#" target="_blank" class="btn-header" style="display: none;">⇗ OpenStreetMap</a>
@@ -176,6 +205,19 @@
     <script src="https://unpkg.com/leaflet-rotate@0.2.8/dist/leaflet-rotate.js"></script>
 
     <script>
+        // Prevención de zoom nativo en elementos de UI mediante JS
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1 && !e.target.closest('#map')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function(e) {
+            if (!e.target.closest('#map')) {
+                e.preventDefault();
+            }
+        });
+
         const params = new URLSearchParams(window.location.search);
         const itemId = params.get('id');
 
@@ -187,7 +229,6 @@
 
             document.getElementById('map-title').textContent = item.nombre;
             
-            // Inicializar solapa
             setupCollectionSideNav(data, item);
 
             const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' });
@@ -200,7 +241,10 @@
                 layers: [dark],
                 rotate: true,
                 touchRotate: true,
-                bearing: 0
+                bearing: 0,
+                // Asegura que el zoom táctil sea solo sobre el mapa
+                touchZoom: true,
+                bounceAtZoomLimits: true
             });
 
             L.control.layers({ "Oscuro": dark, "Claro": light, "Color": osm }, null, { position: 'topleft' }).addTo(map);
