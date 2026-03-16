@@ -51,22 +51,6 @@
     }
   },
   {
-    "id": "DC5",
-    "nombre": "3D: Proyecto ODATA San Bernardo",
-        "archivo": "DC 11 Proyecto ODATA San Bernardo 1_120260309_135732.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
     "id": "pdf1",
     "nombre": "Entrevistas (Archivo abierto - 19th Biennale Architettura Venice): Coordinadora La Farfana",
     "archivo": "pdf/Coordinadora La Farfana.pdf",
@@ -567,5 +551,139 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC9_pdf1",
+    "nombre": "Planimetrías: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "archivo": "pdf/DC9_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC9_pdf2",
+    "nombre": "Declaración de impacto ambiental: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "archivo": "pdf/DC9_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC10_3d",
+    "nombre": "[3D] Cerrillos Data Center",
+        "archivo": "DC 10.3dm",
+    "descripcion": "-",
+    "categoria": "modelo-3d",
+    "tamano": "2.1 MB",
+    "coleccion": "Data Centers: Cerrillos Data Center",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC10_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Cerrillos Data Center",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2143763121",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Cerrillos Data Center",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC10_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Cerrillos Data Center",
+    "archivo": "data/DC10.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Cerrillos Data Center",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC10_pdf1",
+    "nombre": "Planimetrías: Cerrillos Data Center",
+    "archivo": "pdf/DC10_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Cerrillos Data Center",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC10_pdf2",
+    "nombre": "Declaración de impacto ambiental: Cerrillos Data Center",
+    "archivo": "pdf/DC10_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Cerrillos Data Center",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC11_3d",
+    "nombre": "[3D] Proyecto ODATA San Bernardo",
+        "archivo": "DC 11 Proyecto ODATA San Bernardo 1_120260309_135732.3dm",
+    "descripcion": "-",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC11_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Proyecto ODATA San Bernardo",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2151904956",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC11_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Proyecto ODATA San Bernardo",
+    "archivo": "data/DC11.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC11_pdf1",
+    "nombre": "Planimetrías: Proyecto ODATA San Bernardo",
+    "archivo": "pdf/DC11_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC11_pdf2",
+    "nombre": "Declaración de impacto ambiental: Proyecto ODATA San Bernardo",
+    "archivo": "pdf/DC11_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   }
 ]
