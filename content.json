@@ -51,105 +51,9 @@
     }
   },
   {
-    "id": "DC1",
-    "nombre": "3D: Data Center SCL02",
-        "archivo": "1.3 Data Center SCL02 1_1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC2",
-    "nombre": "3D: Data Center SCL03",
-        "archivo": "1.4 Data Center SCL03 1_1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC3",
-    "nombre": "3D: Data Center SCL04",
-        "archivo": "1.5 Data Center SCL04 1_1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC4",
-    "nombre": "3D: Data Center Hewlett Packard Chile Comercial Ltda",
-        "archivo": "Data Center Hewlett Packard Chile Comercial Ltda 1_1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
     "id": "DC5",
     "nombre": "3D: Proyecto ODATA San Bernardo",
         "archivo": "DC 11 Proyecto ODATA San Bernardo 1_120260309_135732.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC6",
-    "nombre": "3D: ODATA Datacenter ST01",
-        "archivo": "ODATA Datacenter ST01 1_1.3dm",
-    "descripcion": "Planimetría de cables submarinos globales",
-    "categoria": "modelo-3d",
-    "tamano": "~10 MB",
-    "thumbnail": "thumbnails/3dthumb.png",
-    "uiConfig": {
-      "cameraModes": ["orbit", "fly"],
-      "visualStyles": ["clay","xray"],
-      "showLayers": false,
-      "showLighting": true,
-      "showShadows": false
-    }
-  },
-  {
-    "id": "DC7",
-    "nombre": "3D: ODATA Datacenter ST02_DC",
-        "archivo": "ODATA Datacenter ST02_DC 07 1_1.3dm",
     "descripcion": "Planimetría de cables submarinos globales",
     "categoria": "modelo-3d",
     "tamano": "~10 MB",
@@ -393,6 +297,275 @@
     "categoria": "mapa",
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Data Center EDCSCL01",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC3_3d",
+    "nombre": "[3D] Data Center SCL02",
+        "archivo": "1.3 Data Center SCL02 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "coleccion": "Data Centers: SCL02-SCL03",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC4_3d",
+    "nombre": "[3D] Data Center SCL03",
+        "archivo": "1.4 Data Center SCL03 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "coleccion": "Data Centers: SCL02-SCL03",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC3_4_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: SCL02-SCL03",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2155167505",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: SCL02-SCL03",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC3_4_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: SCL02-SCL03",
+    "archivo": "data/DC3_4.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: SCL02-SCL03",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC3_4_pdf1",
+    "nombre": "Planimetrías SCL02 - SCL03",
+    "archivo": "pdf/DC3_4_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: SCL02-SCL03",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC5",
+    "nombre": "[3D] Data Center SCL04",
+        "archivo": "1.5 Data Center SCL04 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "coleccion": "Data Centers: SCL04",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC5_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: SCL04",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2159660804",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: SCL04",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC5_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: SCL04",
+    "archivo": "data/DC5.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: SCL04",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC5_pdf1",
+    "nombre": "Planimetrías SCL04",
+    "archivo": "pdf/DC5_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: SCL04",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC6_3d",
+    "nombre": "[3D] ODATA Datacenter ST01",
+        "archivo": "ODATA Datacenter ST01 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "coleccion": "Data Centers: PROYECTO ODATA DATACENTER",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC7_3d",
+    "nombre": "[3D] ODATA Datacenter ST02",
+        "archivo": "ODATA Datacenter ST02_DC 07 1_1.3dm",
+    "descripcion": "Planimetría de cables submarinos globales",
+    "categoria": "modelo-3d",
+    "tamano": "~10 MB",
+    "coleccion": "Data Centers: PROYECTO ODATA DATACENTER",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC6_7_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: PROYECTO ODATA DATACENTER",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2147474024",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: PROYECTO ODATA DATACENTER",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC6_7_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: PROYECTO ODATA DATACENTER",
+    "archivo": "data/DC6.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: PROYECTO ODATA DATACENTER",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC6_7_pdf1",
+    "nombre": "Declaración de impacto ambiental: PROYECTO ODATA DATACENTER",
+    "archivo": "pdf/DC6_7_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: PROYECTO ODATA DATACENTER",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC8_3d",
+    "nombre": "[3D] SCALA DATA CENTER CAMPUS",
+        "archivo": "DC 08 SCALA.3dm",
+    "descripcion": "-",
+    "categoria": "modelo-3d",
+    "tamano": "1.4 MB",
+    "coleccion": "Data Centers: SCALA DATA CENTER CAMPUS",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC8_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: SCALA DATA CENTER CAMPUS",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2152920300",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: SCALA DATA CENTER CAMPUS",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC8_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: SCALA DATA CENTER CAMPUS",
+    "archivo": "data/DC8.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: SCALA DATA CENTER CAMPUS",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC8_pdf1",
+    "nombre": "Planimetrías: SCALA DATA CENTER CAMPUS",
+    "archivo": "pdf/DC8_pdf1.pdf",
+    "descripcion": "Compilado de planimetrías",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: SCALA DATA CENTER CAMPUS",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC8_pdf2",
+    "nombre": "Declaración de impacto ambiental: SCALA DATA CENTER CAMPUS",
+    "archivo": "pdf/DC8_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambiental",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: SCALA DATA CENTER CAMPUS",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC9_3d",
+    "nombre": "3D: Data Center Hewlett Packard Chile Comercial Ltda",
+        "archivo": "Data Center Hewlett Packard Chile Comercial Ltda 1_1.3dm",
+    "descripcion": "-",
+    "categoria": "modelo-3d",
+    "tamano": "10 MB",
+    "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "thumbnail": "thumbnails/3dthumb.png",
+    "uiConfig": {
+      "cameraModes": ["orbit", "fly"],
+      "visualStyles": ["clay","xray"],
+      "showLayers": false,
+      "showLighting": true,
+      "showShadows": false
+    }
+  },
+  {
+    "id": "DC9_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=5933747",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC9_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
+    "archivo": "data/DC9.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Regularización Data Center Hewlett Packard Chile Comercial Ltda.",
     "thumbnail": "thumbnails/mapsthumb.png"
   }
 ]
