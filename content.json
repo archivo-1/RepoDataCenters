@@ -707,6 +707,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC12_pdf1",
+    "nombre": "Planimetrías: Centro de Almacenamiento de Datos Huechuraba",
+    "archivo": "pdf/DC12_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Huechuraba",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC12_pdf2",
+    "nombre": "Declaración de impacto ambiental: Centro de Almacenamiento de Datos Huechuraba",
+    "archivo": "pdf/DC12_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Huechuraba",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC13_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Data Center III Entel -Pudahuel",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2129751932",
@@ -725,6 +745,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Data Center III Entel -Pudahuel",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC13_pdf1",
+    "nombre": "Planimetrías: Data Center III Entel -Pudahuel",
+    "archivo": "pdf/DC13_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center III Entel -Pudahuel",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC13_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Center III Entel -Pudahuel",
+    "archivo": "pdf/DC13_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center III Entel -Pudahuel",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC14_SEIA",
@@ -747,6 +787,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC14_pdf1",
+    "nombre": "Planimetrías: Centro de Almacenamiento de Datos Padre Hurtado",
+    "archivo": "pdf/DC14_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Padre Hurtado",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC14_pdf2",
+    "nombre": "Declaración de impacto ambiental: Centro de Almacenamiento de Datos Padre Hurtado",
+    "archivo": "pdf/DC14_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Padre Hurtado",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC15_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2138736697",
@@ -765,6 +825,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC15_pdf1",
+    "nombre": "Planimetrías: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "archivo": "pdf/DC15_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC15_pdf2",
+    "nombre": "Declaración de impacto ambiental: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "archivo": "pdf/DC15_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC16_SEIA",
@@ -787,6 +867,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC16_pdf1",
+    "nombre": "Planimetrías: Ampliación Data Center PARAM",
+    "archivo": "pdf/DC16_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Ampliación Data Center PARAM",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC16_pdf2",
+    "nombre": "Declaración de impacto ambiental: Ampliación Data Center PARAM",
+    "archivo": "pdf/DC16_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Ampliación Data Center PARAM",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC17_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Data Center Ascenty",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2147377549",
@@ -805,6 +905,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Data Center Ascenty",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC17_pdf1",
+    "nombre": "Planimetrías: Data Center Ascenty",
+    "archivo": "pdf/DC17_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Ascenty",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC17_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Center Ascenty",
+    "archivo": "pdf/DC17_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Ascenty",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC18_SEIA",
@@ -827,6 +947,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC18_pdf1",
+    "nombre": "Planimetrías: Data Center Chile 2",
+    "archivo": "pdf/DC18_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Chile 2",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC18_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Center Chile 2",
+    "archivo": "pdf/DC18_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Chile 2",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC19_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Proyecto Microsoft SCL03",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2154183885",
@@ -845,6 +985,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Proyecto Microsoft SCL03",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC19_pdf1",
+    "nombre": "Planimetrías: Proyecto Microsoft SCL03",
+    "archivo": "pdf/DC19_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto Microsoft SCL03",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC19_pdf2",
+    "nombre": "Declaración de impacto ambiental: Proyecto Microsoft SCL03",
+    "archivo": "pdf/DC19_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Proyecto Microsoft SCL03",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC20_SEIA",
@@ -867,6 +1027,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC20_pdf1",
+    "nombre": "Planimetrías: Data Center Cirion",
+    "archivo": "pdf/DC20_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Cirion",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC20_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Center Cirion",
+    "archivo": "pdf/DC20_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center Cirion",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC21_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Data Hall",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2163905912",
@@ -885,6 +1065,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Data Hall",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC21_pdf1",
+    "nombre": "Planimetrías: Data Hall",
+    "archivo": "pdf/DC21_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Hall",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC21_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Hall",
+    "archivo": "pdf/DC21_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Hall",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC22_SEIA",
@@ -907,6 +1107,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC22_pdf1",
+    "nombre": "Planimetrías: Centro de Almacenamiento de Datos Puente Alto",
+    "archivo": "pdf/DC22_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Puente Alto",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC22_pdf2",
+    "nombre": "Declaración de impacto ambiental: Centro de Almacenamiento de Datos Puente Alto",
+    "archivo": "pdf/DC22_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Puente Alto",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC23_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Scala Data Center Curauma",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2155357362",
@@ -925,6 +1145,26 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Scala Data Center Curauma",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC23_pdf1",
+    "nombre": "Planimetrías: Scala Data Center Curauma",
+    "archivo": "pdf/DC23_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Scala Data Center Curauma",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC23_pdf2",
+    "nombre": "Declaración de impacto ambiental: Scala Data Center Curauma",
+    "archivo": "pdf/DC23_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Scala Data Center Curauma",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   },
   {
     "id": "DC24_SEIA",
@@ -947,6 +1187,26 @@
     "thumbnail": "thumbnails/mapsthumb.png"
   },
   {
+    "id": "DC24_pdf1",
+    "nombre": "Planimetrías: Datacenter ST5",
+    "archivo": "pdf/DC24_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Datacenter ST5",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC24_pdf2",
+    "nombre": "Declaración de impacto ambiental: Datacenter ST5",
+    "archivo": "pdf/DC24_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Datacenter ST5",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
     "id": "DC25_SEIA",
     "nombre": " [SEIA] Ficha del Proyecto: Data Center EDCSCL11",
     "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2152236746",
@@ -965,5 +1225,25 @@
     "tamano": "(vía OpenStreetMap)",
     "coleccion": "Data Centers: Data Center EDCSCL11",
     "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC25_pdf1",
+    "nombre": "Planimetrías: Data Center EDCSCL11",
+    "archivo": "pdf/DC25_pdf1.pdf",
+    "descripcion": "-",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center EDCSCL11",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC25_pdf2",
+    "nombre": "Declaración de impacto ambiental: Data Center EDCSCL11",
+    "archivo": "pdf/DC25_pdf2.pdf",
+    "descripcion": "Declaración de impacto ambientals",
+    "categoria": "pdf",
+    "coleccion": "Data Centers: Data Center EDCSCL11",
+    "tamano": "44 KB",
+    "thumbnail": "thumbnails/pdfthumb.png"
   }
 ]
