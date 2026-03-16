@@ -685,5 +685,285 @@
     "coleccion": "Data Centers: Proyecto ODATA San Bernardo",
     "tamano": "44 KB",
     "thumbnail": "thumbnails/pdfthumb.png"
+  },
+  {
+    "id": "DC12_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Centro de Almacenamiento de Datos Huechuraba",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2156924976",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Huechuraba",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC12_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Centro de Almacenamiento de Datos Huechuraba",
+    "archivo": "data/DC12.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Huechuraba",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC13_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center III Entel -Pudahuel",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2129751932",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center III Entel -Pudahuel",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC13_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center III Entel -Pudahuel",
+    "archivo": "data/DC13.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center III Entel -Pudahuel",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC14_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Centro de Almacenamiento de Datos Padre Hurtado",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2156924955",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Padre Hurtado",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC14_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Centro de Almacenamiento de Datos Padre Hurtado",
+    "archivo": "data/DC14.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Padre Hurtado",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC15_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2138736697",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC15_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "archivo": "data/DC15.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Proyecto Ampliación Edificio de Data Center y Oficinas SONDA, Parque Empresarial Aconcagua",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC16_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Ampliación Data Center PARAM",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2132722997",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Ampliación Data Center PARAM",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC16_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Ampliación Data Center PARAM",
+    "archivo": "data/DC16.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Ampliación Data Center PARAM",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC17_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center Ascenty",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2147377549",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center Ascenty",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC17_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center Ascenty",
+    "archivo": "data/DC17.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center Ascenty",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC18_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center Chile 2",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2150658104",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center Chile 2",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC18_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center Chile 2",
+    "archivo": "data/DC18.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center Chile 2",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC19_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Proyecto Microsoft SCL03",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2154183885",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Proyecto Microsoft SCL03",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC19_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Proyecto Microsoft SCL03",
+    "archivo": "data/DC19.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Proyecto Microsoft SCL03",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC20_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center Cirion",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2159277278",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center Cirion",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC20_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center Cirion",
+    "archivo": "data/DC20.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center Cirion",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC21_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Hall",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2163905912",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Hall",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC21_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Hall",
+    "archivo": "data/DC11.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Hall",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC22_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Centro de Almacenamiento de Datos Puente Alto",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2156418711",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Puente Alto",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC22_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Centro de Almacenamiento de Datos Puente Alto",
+    "archivo": "data/DC22.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Centro de Almacenamiento de Datos Puente Alto",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC23_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Scala Data Center Curauma",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2155357362",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Scala Data Center Curauma",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC23_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Scala Data Center Curauma",
+    "archivo": "data/DC23.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Scala Data Center Curauma",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC24_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Datacenter ST5",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2161802015",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Datacenter ST5",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC24_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Datacenter ST5",
+    "archivo": "data/DC24.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Datacenter ST5",
+    "thumbnail": "thumbnails/mapsthumb.png"
+  },
+  {
+    "id": "DC25_SEIA",
+    "nombre": " [SEIA] Ficha del Proyecto: Data Center EDCSCL11",
+    "archivo": "https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=normal&id_expediente=2152236746",
+    "descripcion": "-",
+    "categoria": "enlace",
+    "tamano": "(vía seria.sea.gob.cl)",
+    "coleccion": "Data Centers: Data Center EDCSCL11",
+    "thumbnail": "thumbnails/seia.png"
+  },
+  {
+    "id": "DC25_MAPS",
+    "nombre": " [Mapa] Ubicación del Proyecto: Data Center EDCSCL11",
+    "archivo": "data/DC25.geojson",
+    "descripcion": "Santiago, Chile",
+    "categoria": "mapa",
+    "tamano": "(vía OpenStreetMap)",
+    "coleccion": "Data Centers: Data Center EDCSCL11",
+    "thumbnail": "thumbnails/mapsthumb.png"
   }
 ]
